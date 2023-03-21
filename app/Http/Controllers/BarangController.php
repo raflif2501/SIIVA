@@ -38,9 +38,11 @@ class BarangController extends Controller
     public function create()
     {
         $kode = Str::random(15);
+        $data1 = Kategori::all();
+        $data2 = Bidang::all();
         // $qrcode = QrCode::size(100)->generate($kode);
         // var_dump($qrcode);
-        return view('barang.create',compact('kode'));
+        return view('barang.create',compact('kode','data1','data2'));
     }
 
     /**
@@ -73,6 +75,8 @@ class BarangController extends Controller
                 'perawatan' => 'required',
                 'jangka_waktu' => 'required',
                 'tanggal_perawatan' => 'required',
+                'kategori_id' => 'required',
+                'bidang_id' => 'required',
             ],$pesan);
             // var_dump($request->all());
             // $image = $request->file('kode_barang');
@@ -90,6 +94,8 @@ class BarangController extends Controller
                     'kondisi' => $request->kondisi,
                     'tahun' => $request->tahun,
                     'sumber' => $request->sumber,
+                    'kategori_id' => $request->kategori_id,
+                    'bidang_id' => $request->bidang_id,
                 ]);
             }else{
                 Barang::create([
@@ -100,22 +106,10 @@ class BarangController extends Controller
                     'kondisi' => $request->kondisi,
                     'tahun' => $request->tahun,
                     'sumber' => $request->sumber,
+                    'kategori_id' => $request->kategori_id,
+                    'bidang_id' => $request->bidang_id,
                 ]);
             }
-            Kategori::create([
-                'id' => $id,
-                'barang_id' => $id,
-                'kategori' => $request->kategori,
-                'perawatan' => $request->perawatan,
-                'jangka_waktu' => $request->jangka_waktu,
-                'tanggal_perawatan' => $request->tanggal_perawatan,
-            ]);
-            Bidang::create([
-                'id' => $id,
-                'barang_id' => $id,
-                'nama_bidang' => $request->nama_bidang,
-                'ruang' => $request->ruang,
-            ]);
             Alert::success('Success', 'Data Berhasil Ditambahkan');
             return redirect()->route('aset.index');
     }
@@ -140,7 +134,9 @@ class BarangController extends Controller
     public function edit($id)
     {
         $data = Barang::find($id);
-        return view('barang.edit', compact('data'));
+        $data1 = Kategori::all();
+        $data2 = Bidang::all();
+        return view('barang.edit', compact('data','data1','data2'));
     }
 
     /**
@@ -166,6 +162,8 @@ class BarangController extends Controller
             'kondisi' => 'required',
             'tahun' => 'required',
             'sumber' => 'required',
+            'kategori_id' => 'required',
+            'bidang_id' => 'required',
             ],$pesan);
             $data = Barang::find($id);
             $data->update($request->all());
@@ -182,20 +180,7 @@ class BarangController extends Controller
     public function destroy($id)
     {
         $data = Barang::find($id);
-        $data1 = Bidang::find($id);
-        $data2 = Kategori::where('id',$id)->first();
-        // var_dump($data2);
-        // die;
-        if ($data2 != null) {
-                $data2->delete();
-                if ($data1 != null) {
-                    $data1->delete();
-                    if ($data != null) {
-                        $data->delete();
-                        Alert::success('Success', 'Data Berhasil Dihapus');
-                        return back();
-                    }
-                }
-            }
+        $data->delete();
+        return redirect()->route('aset.index');
     }
 }

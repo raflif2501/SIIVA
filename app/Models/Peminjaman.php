@@ -23,4 +23,8 @@ class Peminjaman extends Model
     {
         return $this->hasOne(Pengembalian::class);
     }
+    public function karyawan()
+    {
+        return $this->belongsTo(Karyawan::class);
+    }
 }

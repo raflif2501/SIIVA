@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Edit Letak Aset</h3>
+                <h3 class="card-title">Edit Pengembalian Aset</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">

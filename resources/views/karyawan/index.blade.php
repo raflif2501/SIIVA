@@ -6,9 +6,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Aset</h3>
-                        <a href="{{ route('aset.create') }}" type="button" class="btn btn-success" style="float: right">Tambah
-                            Aset</a>
+                        <h3 class="card-title">Data Karyawan</h3>
+                        <a href="{{ route('karyawan.create') }}" type="button" class="btn btn-success"
+                            style="float: right">Tambah
+                            Karyawan</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
@@ -16,18 +17,12 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kode Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Merk / Type</th>
-                                    <th>Kepemilikan</th>
-                                    <th>Kondisi</th>
-                                    <th>Tahun</th>
-                                    <th>Sumber</th>
-                                    <th>Kode Kategori</th>
-                                    <th>Kategori</th>
-                                    <th>Perawatan</th>
-                                    <th>Jangka Waktu</th>
-                                    <th>Tanggal Perawatan</th>
+                                    <th>NIK</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Alamat</th>
+                                    <th>Status</th>
+                                    <th>Jabatan</th>
                                     <th>Bidang</th>
                                     <th>Ruang</th>
                                     @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
@@ -42,23 +37,17 @@
                                 @foreach ($data as $p)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $p->kode_barang }}</td>
-                                        <td>{{ $p->nama_barang }}</td>
-                                        <td>{{ $p->merktype }}</td>
+                                        <td>{{ $p->nik }}</td>
+                                        <td>{{ $p->nama }}</td>
+                                        <td>{{ $p->jk }}</td>
+                                        <td>{{ $p->alamat }}</td>
                                         <td>{{ $p->status }}</td>
-                                        <td>{{ $p->kondisi }}</td>
-                                        <td>{{ $p->tahun }}</td>
-                                        <td>{{ $p->sumber }}</td>
-                                        <td>{{ $p->kategori->kode }}</td>
-                                        <td>{{ $p->kategori->kategori }}</td>
-                                        <td>{{ $p->kategori->perawatan }}</td>
-                                        <td>{{ $p->kategori->jangka_waktu }}</td>
-                                        <td>{{ $p->kategori->tanggal_perawatan }}</td>
+                                        <td>{{ $p->jabatan }}</td>
                                         <td>{{ $p->bidang->nama_bidang }}</td>
                                         <td>{{ $p->bidang->ruang }}</td>
                                         <td>
                                             @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                                                <a href="{{ route('aset.edit', $p->id) }}"
+                                                <a href="{{ route('karyawan.edit', $p->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
                                                 <input type="button" class="btn btn-sm btn-danger"
                                                     data-id="{{ $p->id }}" onclick="deleteData(this)" value="Delete">
@@ -75,5 +64,5 @@
             </div>
         </div>
     </div>
-    @include('barang.scriptDelete')
+    @include('karyawan.scriptDelete')
 @endsection

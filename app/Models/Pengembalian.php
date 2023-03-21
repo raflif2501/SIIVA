@@ -18,8 +18,4 @@ class Pengembalian extends Model
     {
         return $this->belongsTo(Peminjaman::class);
     }
-    public function barang()
-    {
-        return $this->belongsTo(Barang::class);
-    }
 }

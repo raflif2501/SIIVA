@@ -8,18 +8,18 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <form action="{{ route('aset.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('kategori.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="row">
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Kategori Aset</label>
-                                <input type="text" name="kategori"
-                                    class="form-control @error('kategori') is-invalid @enderror"
-                                    placeholder="Masukkan Kategori" value="{{ $data->kategori }}">
-                                @error('kategori')
+                                <label>Kode Kategori</label>
+                                <input type="text" name="kode"
+                                    class="form-control @error('kode') is-invalid @enderror"
+                                    placeholder="Masukkan Kode Kategori" value="{{ $data->kode }}">
+                                @error('kode')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -27,11 +27,11 @@
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Perawatan Aset</label>
-                                <input type="text" name="perawatan"
-                                    class="form-control @error('perawatan') is-invalid @enderror"
-                                    placeholder="Masukkan Jenis Perawatan" value="{{ $data->perawatan }}">
-                                @error('perawatan')
+                                <label>Kategori</label>
+                                <input type="text" name="kategori"
+                                    class="form-control @error('kategori') is-invalid @enderror"
+                                    placeholder="Masukkan Kategori" value="{{ $data->kategori }}">
+                                @error('kategori')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -41,11 +41,11 @@
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Jangka Waktu Perawatan</label>
-                                <input type="text" name="jangka_waktu"
-                                    class="form-control @error('jangka_waktu') is-invalid @enderror"
-                                    placeholder="Masukkan Jangka Waktu Perawatan" value="{{ $data->jangka_waktu }}">
-                                @error('jangka_waktu')
+                                <label>Perawatan</label>
+                                <input type="text" name="perawatan"
+                                    class="form-control @error('perawatan') is-invalid @enderror"
+                                    placeholder="Masukkan Jenis Perawatan" value="{{ $data->perawatan }}">
+                                @error('perawatan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -53,10 +53,24 @@
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
+                                <label>Jangka Waktu</label>
+                                <input type="text" name="jangka_waktu"
+                                    class="form-control @error('jangka_waktu') is-invalid @enderror"
+                                    placeholder="Masukkan jangka_waktu Asset" value="{{ $data->jangka_waktu }}">
+                                @error('jangka_waktu')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
                                 <label>Tanggal Perawatan</label>
                                 <input type="date" name="tanggal_perawatan"
                                     class="form-control @error('tanggal_perawatan') is-invalid @enderror"
-                                    placeholder="Masukkan Tanggal Perawatan" value="{{ $data->tanggal_perawatan }}">
+                                    placeholder="Masukkan tanggal_perawatan" value="{{ $data->tanggal_perawatan }}">
                                 @error('tanggal_perawatan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

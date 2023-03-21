@@ -37,7 +37,7 @@
                                 @foreach ($data as $p)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $p->nama_peminjam }}</td>
+                                        <td>{{ $p->karyawan->nama }}</td>
                                         <td>{{ $p->barang->kode_barang }}</td>
                                         <td>{{ $p->barang->nama_barang }}</td>
                                         <td>{{ $p->barang->merktype }}</td>
@@ -45,27 +45,24 @@
                                         <td>{{ $p->tujuan }}</td>
                                         <td>{{ $p->pengembalian->status }}</td>
                                         <td>{{ $p->pengembalian->tanggal_pengembalian }}</td>
-                                        @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                                            <form action="{{ route('pengembalian.destroy', $p->id) }}" method="post"
-                                                style="display:inline">
+                                        <td>
+                                            @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
                                                 <a href="{{ route('pengembalian.edit', $p->id) }}"
-                                                    class="btn btn-sm btn-warning">Pengembalian</a>
-                                                <button type="submit" class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Yakin ingin menghapus data ? Data tidak dapat dipulihkan')">Delete</button>
-                                                @csrf
-                                                @method('DELETE')
-                                        </form> @endrole
-                                    @endrole
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                <input type="button" class="btn btn-sm btn-danger"
+                                                    data-id="{{ $p->id }}" onclick="deleteData(this)" value="Delete">
+                                            @endrole
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
+                <!-- /.card -->
             </div>
-            <!-- /.card -->
         </div>
     </div>
-</div>
-@include('barang.scriptDelete')
+    @include('barang.scriptDelete')
 @endsection

@@ -26,7 +26,7 @@ class KategoriController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        $data = Barang::all();
+        $data = Kategori::all();
         return view('kategori.index', compact('data'));
     }
 
@@ -37,7 +37,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('kategori.create');
     }
 
     /**
@@ -48,7 +48,44 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // var_dump($request->all());
+        // die;
+        $pesan = [
+            'required' => ':attribute wajib diisi !',
+            'min' => ':attribute harus diisi minimal :min karakter !',
+            'max' => ':attribute harus diisi maksimal :max karakter !',
+            'numeric' => ':attribute harus diisi angka !',
+            ];
+            $this->validate($request,[
+                'kode' => 'required',
+                'kategori' => 'required',
+                'perawatan' => 'required',
+                'jangka_waktu' => 'required',
+                'tanggal_perawatan' => 'required',
+            ],$pesan);
+            $id = intval("0" . rand(1,9) . rand(0,9) . rand(0,9));
+            if($request->kode != null)
+            {
+                Kategori::create([
+                    'id' => $id,
+                    'kode' => $request->kode,
+                    'kategori' => $request->kategori,
+                    'perawatan' => $request->perawatan,
+                    'jangka_waktu' => $request->jangka_waktu,
+                    'tanggal_perawatan' => $request->tanggal_perawatan,
+                ]);
+            }else{
+                Kategori::create([
+                    'id' => $id,
+                    'kode' => $request->kode,
+                    'kategori' => $request->kategori,
+                    'perawatan' => $request->perawatan,
+                    'jangka_waktu' => $request->jangka_waktu,
+                    'tanggal_perawatan' => $request->tanggal_perawatan,
+                ]);
+            }
+            Alert::success('Success', 'Data Berhasil Ditambahkan');
+            return redirect()->route('kategori.index');
     }
 
     /**
@@ -90,10 +127,11 @@ class KategoriController extends Controller
             'numeric' => ':attribute harus diisi angka !',
             ];
             $this->validate($request,[
-            'kategori' => 'required',
-            'perawatan' => 'required',
-            'jangka_waktu' => 'required',
-            'tanggal_perawatan' => 'required',
+                'kode' => 'required',
+                'kategori' => 'required',
+                'perawatan' => 'required',
+                'jangka_waktu' => 'required',
+                'tanggal_perawatan' => 'required',
             ],$pesan);
             $data = Kategori::find($id);
             $data->update($request->all());
@@ -109,21 +147,8 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $data = Barang::find($id);
-        $data1 = Bidang::find($id);
-        $data2 = Kategori::where('id',$id)->first();
-        // var_dump($data2);
-        // die;
-        if ($data2 != null) {
-                $data2->delete();
-                if ($data1 != null) {
-                    $data1->delete();
-                    if ($data != null) {
-                        $data->delete();
-                        Alert::success('Success', 'Data Berhasil Dihapus');
-                        return back();
-                    }
-                }
-            }
+        $data = Kategori::find($id);
+        $data->delete();
+        return redirect()->route('kategori.index');
     }
 }

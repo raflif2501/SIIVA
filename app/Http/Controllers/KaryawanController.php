@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Barang;
-use App\Models\Kategori;
+use App\Models\Karyawan;
 use App\Models\Bidang;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
 
-class BidangController extends Controller
+class KaryawanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,8 +26,8 @@ class BidangController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        $data = Bidang::all();
-        return view('bidang.index', compact('data'));
+        $data = Karyawan::all();
+        return view('karyawan.index', compact('data'));
     }
 
     /**
@@ -37,7 +37,8 @@ class BidangController extends Controller
      */
     public function create()
     {
-        return view('bidang.create');
+        $data1 = Bidang::all();
+        return view('karyawan.create',compact('data1'));
     }
 
     /**
@@ -57,32 +58,41 @@ class BidangController extends Controller
             'numeric' => ':attribute harus diisi angka !',
             ];
             $this->validate($request,[
-                'kode' => 'required',
-                'nama_bidang' => 'required',
-                'kepala_bidang' => 'required',
-                'ruang' => 'required',
+                'nik' => 'required|numeric|min:16|max:16',
+                'nama' => 'required',
+                'jk' => 'required',
+                'alamat' => 'required',
+                'status' => 'required',
+                'jabatan' => 'required',
+                'bidang_id' => 'required',
             ],$pesan);
             $id = intval("0" . rand(1,9) . rand(0,9) . rand(0,9));
-            if($request->kode != null)
+            if($request->nik != null)
             {
-                Bidang::create([
+                Karyawan::create([
                     'id' => $id,
-                    'kode' => $request->kode,
-                    'nama_bidang' => $request->nama_bidang,
-                    'kepala_bidang' => $request->kepala_bidang,
-                    'ruang' => $request->ruang,
+                    'nik' => $request->nik,
+                    'nama' => $request->nama,
+                    'jk' => $request->jk,
+                    'alamat' => $request->alamat,
+                    'status' => $request->status,
+                    'jabatan' => $request->jabatan,
+                    'bidang_id' => $request->bidang_id,
                 ]);
             }else{
-                Bidang::create([
+                Karyawan::create([
                     'id' => $id,
-                    'kode' => $request->kode,
-                    'nama_bidang' => $request->nama_bidang,
-                    'kepala_bidang' => $request->kepala_bidang,
-                    'ruang' => $request->ruang,
+                    'nik' => $request->nik,
+                    'nama' => $request->nama,
+                    'jk' => $request->jk,
+                    'alamat' => $request->alamat,
+                    'status' => $request->status,
+                    'jabatan' => $request->jabatan,
+                    'bidang_id' => $request->bidang_id,
                 ]);
             }
             Alert::success('Success', 'Data Berhasil Ditambahkan');
-            return redirect()->route('bidang.index');
+            return redirect()->route('karyawan.index');
     }
 
     /**
@@ -104,8 +114,9 @@ class BidangController extends Controller
      */
     public function edit($id)
     {
-        $data = Bidang::find($id);
-        return view('bidang.edit', compact('data'));
+        $data = Karyawan::find($id);
+        $data1 = Bidang::all();
+        return view('karyawan.edit', compact('data','data1'));
     }
 
     /**
@@ -117,22 +128,25 @@ class BidangController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $pesan = [
+        $pesan = [
             'required' => ':attribute wajib diisi !',
             'min' => ':attribute harus diisi minimal :min karakter !',
             'max' => ':attribute harus diisi maksimal :max karakter !',
             'numeric' => ':attribute harus diisi angka !',
             ];
             $this->validate($request,[
-                'kode' => 'required',
-                'nama_bidang' => 'required',
-                'kepala_bidang' => 'required',
-                'ruang' => 'required',
+                'nik' => 'required|numeric|min:16|max:16',
+                'nama' => 'required',
+                'jk' => 'required',
+                'alamat' => 'required',
+                'status' => 'required',
+                'jabatan' => 'required',
+                'bidang_id' => 'required',
             ],$pesan);
-            $data = Bidang::find($id);
+            $data = Karyawan::find($id);
             $data->update($request->all());
             Alert::success('Success', 'Data Berhasil Dirubah');
-            return redirect()->route('bidang.index');
+            return redirect()->route('karyawan.index');
     }
 
     /**
@@ -143,8 +157,8 @@ class BidangController extends Controller
      */
     public function destroy($id)
     {
-        $data = Bidang::find($id);
+        $data = Karyawan::find($id);
         $data->delete();
-        return redirect()->route('bidang.index');
+        return redirect()->route('karyawan.index');
     }
 }

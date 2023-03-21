@@ -16,18 +16,14 @@ class Barang extends Model
     protected $guarded=[];
     public function bidang()
     {
-        return $this->hasOne(Bidang::class);
+        return $this->belongsTo(Bidang::class);
     }
     public function kategori()
     {
-        return $this->hasOne(Kategori::class);
+        return $this->belongsTo(Kategori::class);
     }
     public function peminjaman()
     {
         return $this->hasOne(Peminjaman::class);
-    }
-    public function pengembalian()
-    {
-        return $this->hasOne(Pengembalian::class);
     }
 }

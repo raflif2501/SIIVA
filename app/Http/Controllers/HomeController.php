@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Barang;
+use App\Models\Bidang;
+use App\Models\Kategori;
+use App\Models\Karyawan;
 
 class HomeController extends Controller
 {
@@ -25,6 +29,10 @@ class HomeController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        return view('admin.index');
+        $barang = Barang::count();
+        $bidang = Bidang::count();
+        $kategori = Kategori::count();
+        $karyawan = Karyawan::count();
+        return view('admin.index',compact('barang','bidang','kategori','karyawan'));
     }
 }

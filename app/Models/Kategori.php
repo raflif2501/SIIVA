@@ -16,6 +16,6 @@ class Kategori extends Model
     protected $guarded=[];
     public function barang()
     {
-        return $this->belongsToMany(Barang::class);
+        return $this->hasMany(Barang::class);
     }
 }

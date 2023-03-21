@@ -15,7 +15,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: 'POST',
-                    url: 'kategori/' + id,
+                    url: 'karyawan/' + id,
                     data: {
                         "_token": '{{ csrf_token() }}',
                         '_method': 'DELETE'

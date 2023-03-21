@@ -15,7 +15,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: 'POST',
-                    url: 'aset/' + id,
+                    url: 'bidang/' + id,
                     data: {
                         "_token": '{{ csrf_token() }}',
                         '_method': 'DELETE'

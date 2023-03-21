@@ -134,17 +134,8 @@ class PengembalianController extends Controller
      */
     public function destroy($id)
     {
-        $data = Peminjaman::find($id);
-        $data1 = Pengembalian::where('id',$id)->first();
-        // var_dump($data2);
-        // die;
-        if ($data1 != null) {
-            $data1->delete();
-            if ($data != null) {
-                $data->delete();
-                Alert::success('Success', 'Data Berhasil Dihapus');
-                return back();
-            }
-        }
+        $data = Pengembalian::find($id);
+        $data->delete();
+        return redirect()->route('peminjaman.index');
     }
 }

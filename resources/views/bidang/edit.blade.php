@@ -8,19 +8,22 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                {{-- @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif --}}
                 <form action="{{ route('bidang.update', $data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Kode Bidang</label>
+                                <input type="text" name="kode"
+                                    class="form-control @error('kode') is-invalid @enderror"
+                                    placeholder="Masukkan Kode Bidang" value="{{ $data->kode }}">
+                                @error('kode')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
@@ -33,13 +36,27 @@
                                 @enderror
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Letak Ruangan</label>
+                                <label>Kepala Bidang</label>
+                                <input type="text" name="kepala_bidang"
+                                    class="form-control @error('kepala_bidang') is-invalid @enderror"
+                                    placeholder="Masukkan Kepala Bidang" value="{{ $data->kepala_bidang }}">
+                                @error('kepala_bidang')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Ruang</label>
                                 <input type="text" name="ruang"
-                                    class="form-control @error('ruang') is-invalid @enderror"
-                                    placeholder="Masukkan Nama Ruang" value="{{ $data->ruang }}">
+                                    class="form-control @error('ruang') is-invalid @enderror" placeholder="Masukkan Ruangan"
+                                    value="{{ $data->ruang }}">
                                 @error('ruang')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

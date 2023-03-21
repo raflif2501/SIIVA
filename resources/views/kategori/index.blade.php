@@ -7,8 +7,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Kategori Aset</h3>
-                        <a href="{{ route('aset.create') }}" type="button" class="btn btn-success" style="float: right">Tambah
-                            Aset</a>
+                        <a href="{{ route('kategori.create') }}" type="button" class="btn btn-success"
+                            style="float: right">Tambah
+                            Kategori</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
@@ -16,15 +17,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kode Barang</th>
-                                    <th>Nama Barang</th>
-                                    <th>Merk / Type</th>
-                                    <th>Kepemilikan</th>
-                                    <th>Kondisi</th>
-                                    <th>Tahun</th>
-                                    <th>Sumber</th>
-                                    {{-- <th>Bidang</th>
-                                    <th>Ruang</th> --}}
+                                    <th>Kode Kategori</th>
                                     <th>Kategori</th>
                                     <th>Perawatan</th>
                                     <th>Jangka Waktu</th>
@@ -41,30 +34,17 @@
                                 @foreach ($data as $p)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $p->kode_barang }}</td>
-                                        <td>{{ $p->nama_barang }}</td>
-                                        <td>{{ $p->merktype }}</td>
-                                        <td>{{ $p->status }}</td>
-                                        <td>{{ $p->kondisi }}</td>
-                                        <td>{{ $p->tahun }}</td>
-                                        <td>{{ $p->sumber }}</td>
-                                        {{-- <td>{{ $p->bidang->nama_bidang }}</td>
-                                        <td>{{ $p->bidang->ruang }}</td> --}}
-                                        <td>{{ $p->kategori->kategori }}</td>
-                                        <td>{{ $p->kategori->perawatan }}</td>
-                                        <td>{{ $p->kategori->jangka_waktu }}</td>
-                                        <td>{{ $p->kategori->tanggal_perawatan }}</td>
+                                        <td>{{ $p->kode }}</td>
+                                        <td>{{ $p->kategori }}</td>
+                                        <td>{{ $p->perawatan }}</td>
+                                        <td>{{ $p->jangka_waktu }}</td>
+                                        <td>{{ $p->tanggal_perawatan }}</td>
                                         <td>
                                             @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                                                <form action="{{ route('kategori.destroy', $p->id) }}" method="post"
-                                                    style="display:inline">
-                                                    <a href="{{ route('kategori.edit', $p->id) }}"
-                                                        class="btn btn-sm btn-warning">Edit</a>
-                                                    <button type="submit" class="btn btn-sm btn-danger"
-                                                        onclick="return confirm('Yakin ingin menghapus data ? Data tidak dapat dipulihkan')">Delete</button>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
+                                                <a href="{{ route('kategori.edit', $p->id) }}"
+                                                    class="btn btn-sm btn-warning">Edit</a>
+                                                <input type="button" class="btn btn-sm btn-danger"
+                                                    data-id="{{ $p->id }}" onclick="deleteData(this)" value="Delete">
                                             @endrole
                                         </td>
                                     </tr>

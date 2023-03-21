@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Barang;
+use App\Models\Karyawan;
 use App\Models\Peminjaman;
 use App\Models\Pengembalian;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -38,7 +39,8 @@ class PeminjamanController extends Controller
     public function create()
     {
         $data = Barang::all();
-        return view('peminjaman.create',compact('data'));
+        $data1 = Karyawan::all();
+        return view('peminjaman.create',compact('data','data1'));
     }
 
     /**
@@ -58,9 +60,11 @@ class PeminjamanController extends Controller
         'numeric' => ':attribute harus diisi angka !',
         ];
         $this->validate($request,[
+            'kode' => 'required',
             'barang_id' => 'required',
-            'nama_peminjam' => 'required',
+            'karyawan_id' => 'required',
             'tanggal_peminjaman' => 'required',
+            'jangka_waktu' => 'required|numeric',
             'tujuan' => 'required',
         ],$pesan);
         $id = intval("0" . rand(1,9) . rand(0,9) . rand(0,9));
@@ -68,17 +72,21 @@ class PeminjamanController extends Controller
         {
             Peminjaman::create([
                 'id' => $id,
+                'kode' => $request->kode,
                 'barang_id' => $request->barang_id,
-                'nama_peminjam' => $request->nama_peminjam,
+                'karyawan_id' => $request->karyawan_id,
                 'tanggal_peminjaman' => $request->tanggal_peminjaman,
+                'jangka_waktu' => $request->jangka_waktu,
                 'tujuan' => $request->tujuan,
             ]);
         }else{
             Peminjaman::create([
                 'id' => $id,
+                'kode' => $request->kode,
                 'barang_id' => $request->barang_id,
-                'nama_peminjam' => $request->nama_peminjam,
+                'karyawan_id' => $request->karyawan_id,
                 'tanggal_peminjaman' => $request->tanggal_peminjaman,
+                'jangka_waktu' => $request->jangka_waktu,
                 'tujuan' => $request->tujuan,
             ]);
         }
@@ -112,8 +120,9 @@ class PeminjamanController extends Controller
     public function edit($id)
     {
         $data1 = Barang::all();
+        $data2 = Karyawan::all();
         $data = Peminjaman::find($id);
-        return view('peminjaman.edit', compact('data','data1'));
+        return view('peminjaman.edit', compact('data','data1','data2'));
     }
 
     /**
@@ -132,10 +141,13 @@ class PeminjamanController extends Controller
             'numeric' => ':attribute harus diisi angka !',
             ];
             $this->validate($request,[
-            'barang_id' => 'required',
-            'nama_peminjam' => 'required',
-            'tanggal_peminjaman' => 'required',
-            'tujuan' => 'required',
+                'kode' => 'required',
+                'barang_id' => 'required',
+                'karyawan_id' => 'required',
+                'nama_peminjam' => 'required',
+                'tanggal_peminjaman' => 'required',
+                'jangka_waktu' => 'required|numeric',
+                'tujuan' => 'required',
             ],$pesan);
             $data = Peminjaman::find($id);
             // var_dump($request->all());
@@ -154,16 +166,7 @@ class PeminjamanController extends Controller
     public function destroy($id)
     {
         $data = Peminjaman::find($id);
-        $data1 = Pengembalian::where('id',$id)->first();
-        // var_dump($data2);
-        // die;
-        if ($data1 != null) {
-            $data1->delete();
-            if ($data != null) {
-                $data->delete();
-                Alert::success('Success', 'Data Berhasil Dihapus');
-                return back();
-            }
-        }
+        $data->delete();
+        return redirect()->route('peminjaman.index');
     }
 }

@@ -127,7 +127,7 @@
                         @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
                             <li class="nav-item">
                                 <a href="{{ route('aset.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-edit"></i>
+                                    <i class="nav-icon fas fa-tools"></i>
                                     <p>Data Aset</p>
                                 </a>
                             </li>
@@ -136,7 +136,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('bidang.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-map-marker-alt"></i>
-                                    <p>Peletakan Aset</p>
+                                    <p>Data Bidang</p>
                                 </a>
                             </li>
                         @endrole
@@ -144,7 +144,15 @@
                             <li class="nav-item">
                                 <a href="{{ route('kategori.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-list-alt"></i>
-                                    <p>Kategori</p>
+                                    <p>Data Kategori</p>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                            <li class="nav-item">
+                                <a href="{{ route('karyawan.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-user-alt"></i>
+                                    <p>Data Karyawan</p>
                                 </a>
                             </li>
                         @endrole

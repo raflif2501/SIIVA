@@ -17,7 +17,9 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Kode</th>
                                     <th>Nama Peminjam</th>
+                                    <th>Bidang</th>
                                     <th>Kode Barang</th>
                                     <th>Nama Barang</th>
                                     <th>Merk / Type</th>
@@ -35,23 +37,22 @@
                                 @foreach ($data as $p)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $p->nama_peminjam }}</td>
+                                        <td>{{ $p->kode }}</td>
+                                        <td>{{ $p->karyawan->nama }}</td>
+                                        <td>{{ $p->karyawan->bidang->nama_bidang }}</td>
                                         <td>{{ $p->barang->kode_barang }}</td>
                                         <td>{{ $p->barang->nama_barang }}</td>
                                         <td>{{ $p->barang->merktype }}</td>
                                         <td>{{ $p->tanggal_peminjaman }}</td>
                                         <td>{{ $p->tujuan }}</td>
-                                        @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                                            <form action="{{ route('peminjaman.destroy', $p->id) }}" method="post"
-                                                style="display:inline">
+                                        <td>
+                                            @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
                                                 <a href="{{ route('peminjaman.edit', $p->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
-                                                <button type="submit" class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Yakin ingin menghapus data ? Data tidak dapat dipulihkan')">Delete</button>
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                        @endrole
+                                                <input type="button" class="btn btn-sm btn-danger"
+                                                    data-id="{{ $p->id }}" onclick="deleteData(this)" value="Delete">
+                                            @endrole
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

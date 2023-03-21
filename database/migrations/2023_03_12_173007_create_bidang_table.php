@@ -15,8 +15,9 @@ class CreateBidangTable extends Migration
     {
         Schema::create('bidangs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barang_id')->constrained('barangs');
+            $table->string('kode');
             $table->string('nama_bidang');
+            $table->string('kepala_bidang');
             $table->string('ruang');
             $table->timestamps();
         });

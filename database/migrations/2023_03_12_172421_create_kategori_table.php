@@ -15,7 +15,7 @@ class CreateKategoriTable extends Migration
     {
         Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barang_id')->constrained('barangs');
+            $table->string('kode');
             $table->string('kategori');
             $table->string('perawatan');
             $table->string('jangka_waktu');
