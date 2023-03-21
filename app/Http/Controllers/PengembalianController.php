@@ -97,7 +97,8 @@ class PengembalianController extends Controller
      */
     public function edit($id)
     {
-        return view('pengembalian.edit');
+        $data = Peminjaman::find($id);
+        return view('pengembalian.edit',compact('data'));
     }
 
     /**

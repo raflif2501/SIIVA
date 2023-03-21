@@ -178,7 +178,7 @@
                         </div>
                     </div>
                     <div class="card-footer" style="float: right">
-                        <a href="{{ route('aset.index') }}" class="btn btn-danger">Kembali</a>&ensp;
+                        <a href="{{ route('kategori.index') }}" class="btn btn-danger">Kembali</a>&ensp;
                         <button type="submit" class="btn btn-primary" style="float: right">Submit</button>
                     </div>
                 </form>

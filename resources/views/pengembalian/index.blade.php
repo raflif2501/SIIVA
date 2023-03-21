@@ -17,8 +17,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>nama Peminjam</th>
+                                    <th>Nama Peminjam</th>
+                                    <th>Kode Barang</th>
                                     <th>Nama Barang</th>
+                                    <th>Merk / Type</th>
                                     <th>Tanggal Peminjaman</th>
                                     <th>Tujuan</th>
                                     <th>Status</th>
@@ -36,29 +38,34 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $p->nama_peminjam }}</td>
-                                        <td>{{ $p->nama_barang }}</td>
+                                        <td>{{ $p->barang->kode_barang }}</td>
+                                        <td>{{ $p->barang->nama_barang }}</td>
+                                        <td>{{ $p->barang->merktype }}</td>
                                         <td>{{ $p->tanggal_peminjaman }}</td>
                                         <td>{{ $p->tujuan }}</td>
                                         <td>{{ $p->pengembalian->status }}</td>
                                         <td>{{ $p->pengembalian->tanggal_pengembalian }}</td>
                                         @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                                            <td>
+                                            <form action="{{ route('pengembalian.destroy', $p->id) }}" method="post"
+                                                style="display:inline">
                                                 <a href="{{ route('pengembalian.edit', $p->id) }}"
-                                                    class="btn btn-sm btn-warning">Edit</a>
-                                                <input type="button" class="btn btn-sm btn-danger"
-                                                    data-id="{{ $p->id }}" onclick="deleteData(this)" value="Delete">
-                                            </td>
-                                        @endrole
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
+                                                    class="btn btn-sm btn-warning">Pengembalian</a>
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Yakin ingin menghapus data ? Data tidak dapat dipulihkan')">Delete</button>
+                                                @csrf
+                                                @method('DELETE')
+                                        </form> @endrole
+                                    @endrole
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                <!-- /.card -->
+                <!-- /.card-body -->
             </div>
+            <!-- /.card -->
         </div>
     </div>
-    @include('barang.scriptDelete')
+</div>
+@include('barang.scriptDelete')
 @endsection

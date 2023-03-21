@@ -17,7 +17,6 @@ class CreatePeminjamanTable extends Migration
             $table->id();
             $table->foreignId('barang_id')->constrained('barangs');
             $table->string('nama_peminjam');
-            $table->string('nama_barang');
             $table->date('tanggal_peminjaman');
             $table->string('tujuan');
             $table->timestamps();

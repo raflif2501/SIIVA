@@ -15,10 +15,9 @@ class CreatePengembalianTable extends Migration
     {
         Schema::create('pengembalians', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('barang_id')->constrained('barangs');
             $table->foreignId('peminjaman_id')->constrained('peminjamans');
             $table->string('status');
-            $table->date('tanggal_pengembalian')->nullable();
+            $table->datetime('tanggal_pengembalian')->nullable();
             $table->timestamps();
         });
     }

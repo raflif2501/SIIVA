@@ -14,7 +14,7 @@ class Peminjaman extends Model
     use HasFactory;
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
     protected $guarded=[];
-    // protected $table='peminjamans';
+    protected $table='peminjamans';
     public function barang()
     {
         return $this->belongsTo(Barang::class);

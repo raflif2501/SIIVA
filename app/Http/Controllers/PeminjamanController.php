@@ -49,6 +49,8 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
+        // var_dump($request->all());
+        // die;
         $pesan = [
         'required' => ':attribute wajib diisi !',
         'min' => ':attribute harus diisi minimal :min karakter !',
@@ -56,26 +58,26 @@ class PeminjamanController extends Controller
         'numeric' => ':attribute harus diisi angka !',
         ];
         $this->validate($request,[
+            'barang_id' => 'required',
             'nama_peminjam' => 'required',
-            'nama_barang' => 'required',
             'tanggal_peminjaman' => 'required',
             'tujuan' => 'required',
         ],$pesan);
         $id = intval("0" . rand(1,9) . rand(0,9) . rand(0,9));
-        if($request->keterangan != null)
+        if($request->tujuan != null)
         {
             Peminjaman::create([
                 'id' => $id,
+                'barang_id' => $request->barang_id,
                 'nama_peminjam' => $request->nama_peminjam,
-                'nama_barang' => $request->nama_barang,
                 'tanggal_peminjaman' => $request->tanggal_peminjaman,
                 'tujuan' => $request->tujuan,
             ]);
         }else{
             Peminjaman::create([
                 'id' => $id,
+                'barang_id' => $request->barang_id,
                 'nama_peminjam' => $request->nama_peminjam,
-                'nama_barang' => $request->nama_barang,
                 'tanggal_peminjaman' => $request->tanggal_peminjaman,
                 'tujuan' => $request->tujuan,
             ]);
@@ -84,7 +86,6 @@ class PeminjamanController extends Controller
             'id' => $id,
             'peminjaman_id' => $id,
             'status' => $request->status,
-            'tanggal_pengembalian' => '',
         ]);
         // dd($request);
         Alert::success('Success', 'Data Berhasil Ditambahkan');
@@ -110,8 +111,9 @@ class PeminjamanController extends Controller
      */
     public function edit($id)
     {
+        $data1 = Barang::all();
         $data = Peminjaman::find($id);
-        return view('peminjaman.edit', compact('data'));
+        return view('peminjaman.edit', compact('data','data1'));
     }
 
     /**
@@ -130,12 +132,14 @@ class PeminjamanController extends Controller
             'numeric' => ':attribute harus diisi angka !',
             ];
             $this->validate($request,[
+            'barang_id' => 'required',
             'nama_peminjam' => 'required',
-            'nama_barang' => 'required',
             'tanggal_peminjaman' => 'required',
             'tujuan' => 'required',
             ],$pesan);
             $data = Peminjaman::find($id);
+            // var_dump($request->all());
+            // die;
             $data->update($request->all());
             Alert::success('Success', 'Data Berhasil Dirubah');
             return redirect()->route('peminjaman.index');
