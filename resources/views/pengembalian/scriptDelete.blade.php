@@ -2,7 +2,6 @@
 <script>
     function deleteData(e) {
         let id = e.getAttribute('data-id');
-
         Swal.fire({
             title: 'Apakah Anda Yakin ?',
             text: "Data Tidak Dapat Dipulihkan !",

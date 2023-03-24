@@ -179,8 +179,8 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        $data = Barang::find($id);
-        $data->delete();
+        Barang::find($id)->delete();
+        Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect()->route('aset.index');
     }
 }

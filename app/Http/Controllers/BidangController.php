@@ -143,8 +143,8 @@ class BidangController extends Controller
      */
     public function destroy($id)
     {
-        $data = Bidang::find($id);
-        $data->delete();
+        Bidang::find($id)->delete();
+        Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect()->route('bidang.index');
     }
 }

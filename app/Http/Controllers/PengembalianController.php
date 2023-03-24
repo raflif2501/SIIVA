@@ -134,8 +134,8 @@ class PengembalianController extends Controller
      */
     public function destroy($id)
     {
-        $data = Pengembalian::find($id);
-        $data->delete();
+        Pengembalian::find($id)->delete();
+        Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect()->route('peminjaman.index');
     }
 }

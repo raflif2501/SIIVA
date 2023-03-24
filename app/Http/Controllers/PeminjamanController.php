@@ -165,8 +165,8 @@ class PeminjamanController extends Controller
      */
     public function destroy($id)
     {
-        $data = Peminjaman::find($id);
-        $data->delete();
+        Peminjaman::find($id)->delete();
+        Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect()->route('peminjaman.index');
     }
 }

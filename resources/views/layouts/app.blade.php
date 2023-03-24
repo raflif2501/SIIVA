@@ -125,7 +125,7 @@
                         </li>
                         <li class="nav-header">MENU</li>
                         @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a href="{{ route('aset.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-tools"></i>
                                     <p>Data Aset</p>
@@ -133,7 +133,7 @@
                             </li>
                         @endrole
                         @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a href="{{ route('bidang.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-map-marker-alt"></i>
                                     <p>Data Bidang</p>
@@ -141,7 +141,7 @@
                             </li>
                         @endrole
                         @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a href="{{ route('kategori.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-list-alt"></i>
                                     <p>Data Kategori</p>
@@ -149,7 +149,7 @@
                             </li>
                         @endrole
                         @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a href="{{ route('karyawan.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-user-alt"></i>
                                     <p>Data Karyawan</p>
@@ -158,7 +158,7 @@
                         @endrole
                         <li class="nav-header">TRANSAKSI</li>
                         @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a href="{{ route('peminjaman.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>Peminjaman</p>
@@ -166,7 +166,7 @@
                             </li>
                         @endrole
                         @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a href="{{ route('pengembalian.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-sign-in-alt"></i>
                                     <p>Pengembalian</p>
@@ -175,7 +175,7 @@
                         @endrole
                         @role('admin')
                             <li class="nav-header">ADMIN</li>
-                            <li class="nav-item">
+                            <li class="nav-item ">
                                 <a href="{{ route('users.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>Tambah Admin</p>

@@ -147,8 +147,8 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $data = Kategori::find($id);
-        $data->delete();
+        Kategori::find($id)->delete();
+        Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect()->route('kategori.index');
     }
 }
