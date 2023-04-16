@@ -16,17 +16,24 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Kode</th>
                                     <th>Kode Barang</th>
                                     <th>Nama Barang</th>
-                                    <th>Merk / Type</th>
-                                    <th>Kepemilikan</th>
-                                    <th>Kondisi</th>
+                                    <th>Register</th>
+                                    <th>Merk/Type</th>
+                                    <th>Bahan</th>
                                     <th>Tahun</th>
-                                    <th>Sumber</th>
-                                    <th>Kode Kategori</th>
+                                    <th>Harga</th>
+                                    <th>Asal</th>
+                                    <th>Ukuran</th>
+                                    <th>Pabrik</th>
+                                    <th>Rangka</th>
+                                    <th>Mesin</th>
+                                    <th>Nopol</th>
+                                    <th>BPKB</th>
+                                    <th>Keterangan</th>
                                     <th>Kategori</th>
-                                    <th>Perawatan</th>
-                                    <th>Jangka Waktu</th>
+                                    <th>Jangka Perawatan</th>
                                     <th>Tanggal Perawatan</th>
                                     <th>Bidang</th>
                                     <th>Ruang</th>
@@ -38,21 +45,35 @@
                             @php
                                 $no = 1;
                             @endphp
+                            @php
+                                function str($rupiah)
+                                {
+                                    $rp = 'Rp ' . number_format($rupiah, 2, ',', '.');
+                                    return $rp;
+                                }
+                            @endphp
                             <tbody>
                                 @foreach ($data as $p)
                                     <tr>
                                         <td>{{ $no++ }}</td>
+                                        <td>{{ $p->kode }}</td>
                                         <td>{{ $p->kode_barang }}</td>
                                         <td>{{ $p->nama_barang }}</td>
+                                        <td>{{ $p->register }}</td>
                                         <td>{{ $p->merktype }}</td>
-                                        <td>{{ $p->status }}</td>
-                                        <td>{{ $p->kondisi }}</td>
+                                        <td>{{ $p->bahan }}</td>
                                         <td>{{ $p->tahun }}</td>
-                                        <td>{{ $p->sumber }}</td>
-                                        <td>{{ $p->kategori->kode }}</td>
+                                        <td>{{ str($p->harga) }}</td>
+                                        <td>{{ $p->asal }}</td>
+                                        <td>{{ $p->ukuran }}</td>
+                                        <td>{{ $p->pabrik }}</td>
+                                        <td>{{ $p->rangka }}</td>
+                                        <td>{{ $p->mesin }}</td>
+                                        <td>{{ $p->nopol }}</td>
+                                        <td>{{ $p->bpkb }}</td>
+                                        <td>{{ $p->keterangan }}</td>
                                         <td>{{ $p->kategori->kategori }}</td>
-                                        <td>{{ $p->kategori->perawatan }}</td>
-                                        <td>{{ $p->kategori->jangka_waktu }}</td>
+                                        <td>{{ $p->kategori->jangka_perawatan }}</td>
                                         <td>{{ $p->kategori->tanggal_perawatan }}</td>
                                         <td>{{ $p->bidang->nama_bidang }}</td>
                                         <td>{{ $p->bidang->ruang }}</td>

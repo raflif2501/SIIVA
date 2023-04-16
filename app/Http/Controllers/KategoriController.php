@@ -59,9 +59,6 @@ class KategoriController extends Controller
             $this->validate($request,[
                 'kode' => 'required',
                 'kategori' => 'required',
-                'perawatan' => 'required',
-                'jangka_waktu' => 'required',
-                'tanggal_perawatan' => 'required',
             ],$pesan);
             $id = intval("0" . rand(1,9) . rand(0,9) . rand(0,9));
             if($request->kode != null)
@@ -70,8 +67,7 @@ class KategoriController extends Controller
                     'id' => $id,
                     'kode' => $request->kode,
                     'kategori' => $request->kategori,
-                    'perawatan' => $request->perawatan,
-                    'jangka_waktu' => $request->jangka_waktu,
+                    'jangka_perawatan' => $request->jangka_perawatan,
                     'tanggal_perawatan' => $request->tanggal_perawatan,
                 ]);
             }else{
@@ -79,8 +75,7 @@ class KategoriController extends Controller
                     'id' => $id,
                     'kode' => $request->kode,
                     'kategori' => $request->kategori,
-                    'perawatan' => $request->perawatan,
-                    'jangka_waktu' => $request->jangka_waktu,
+                    'jangka_perawatan' => $request->jangka_perawatan,
                     'tanggal_perawatan' => $request->tanggal_perawatan,
                 ]);
             }
@@ -129,9 +124,6 @@ class KategoriController extends Controller
             $this->validate($request,[
                 'kode' => 'required',
                 'kategori' => 'required',
-                'perawatan' => 'required',
-                'jangka_waktu' => 'required',
-                'tanggal_perawatan' => 'required',
             ],$pesan);
             $data = Kategori::find($id);
             $data->update($request->all());

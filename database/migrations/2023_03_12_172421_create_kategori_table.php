@@ -17,9 +17,8 @@ class CreateKategoriTable extends Migration
             $table->id();
             $table->string('kode');
             $table->string('kategori');
-            $table->string('perawatan');
-            $table->string('jangka_waktu');
-            $table->date('tanggal_perawatan');
+            $table->string('jangka_perawatan')->nullable();
+            $table->date('tanggal_perawatan')->nullable();
             $table->timestamps();
         });
     }

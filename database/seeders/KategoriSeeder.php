@@ -16,10 +16,9 @@ class KategoriSeeder extends Seeder
     public function run()
     {
         $kategori = Kategori::create([
-            'kode'     => 'COMPT',
-            'kategori'     => 'Computer',
-            'perawatan'     => 'Service Rutin',
-            'jangka_waktu'     => '90',
+            'kode'     => 'SPDMTR',
+            'kategori'     => 'Sepeda Motor',
+            'jangka_perawatan'     => '60',
             'tanggal_perawatan'     => '2023-12-12',
         ]);
     }

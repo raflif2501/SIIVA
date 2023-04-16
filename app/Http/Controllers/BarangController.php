@@ -62,19 +62,11 @@ class BarangController extends Controller
             'numeric' => ':attribute harus diisi angka !',
             ];
             $this->validate($request,[
+                'kode' => 'required',
                 'kode_barang' => 'required',
                 'nama_barang' => 'required',
                 'merktype' => 'required',
-                'status' => 'required',
-                'kondisi' => 'required',
-                'tahun' => 'required',
-                'sumber' => 'required',
-                'nama_bidang' => 'required',
-                'ruang' => 'required',
-                'kategori' => 'required',
-                'perawatan' => 'required',
-                'jangka_waktu' => 'required',
-                'tanggal_perawatan' => 'required',
+                'harga' => 'numeric',
                 'kategori_id' => 'required',
                 'bidang_id' => 'required',
             ],$pesan);
@@ -87,25 +79,44 @@ class BarangController extends Controller
             {
                 Barang::create([
                     'id' => $id,
+                    'kode' => $request->kode,
                     'kode_barang' => $request->kode_barang,
                     'nama_barang' => $request->nama_barang,
+                    'register' => $request->register,
                     'merktype' => $request->merktype,
-                    'status' => $request->status,
-                    'kondisi' => $request->kondisi,
+                    'bahan' => $request->bahan,
                     'tahun' => $request->tahun,
-                    'sumber' => $request->sumber,
+                    'harga' => $request->harga,
+                    'asal' => $request->asal,
+                    'ukuran' => $request->ukuran,
+                    'pabrik' => $request->pabrik,
+                    'rangka' => $request->rangka,
+                    'mesin' => $request->mesin,
+                    'nopol' => $request->nopol,
+                    'bpkb' => $request->bpkb,
+                    'keterangan' => $request->keterangan,
                     'kategori_id' => $request->kategori_id,
                     'bidang_id' => $request->bidang_id,
                 ]);
             }else{
                 Barang::create([
                     'id' => $id,
+                    'kode' => $request->kode,
                     'kode_barang' => $request->kode_barang,
+                    'nama_barang' => $request->nama_barang,
+                    'register' => $request->register,
                     'merktype' => $request->merktype,
-                    'status' => $request->status,
-                    'kondisi' => $request->kondisi,
+                    'bahan' => $request->bahan,
                     'tahun' => $request->tahun,
-                    'sumber' => $request->sumber,
+                    'harga' => $request->harga,
+                    'asal' => $request->asal,
+                    'ukuran' => $request->ukuran,
+                    'pabrik' => $request->pabrik,
+                    'rangka' => $request->rangka,
+                    'mesin' => $request->mesin,
+                    'nopol' => $request->nopol,
+                    'bpkb' => $request->bpkb,
+                    'keterangan' => $request->keterangan,
                     'kategori_id' => $request->kategori_id,
                     'bidang_id' => $request->bidang_id,
                 ]);
@@ -148,6 +159,7 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // var_dump($request->all());
         $pesan = [
             'required' => ':attribute wajib diisi !',
             'min' => ':attribute harus diisi minimal :min karakter !',
@@ -155,15 +167,13 @@ class BarangController extends Controller
             'numeric' => ':attribute harus diisi angka !',
             ];
             $this->validate($request,[
-            'kode_barang' => 'required',
-            'nama_barang' => 'required',
-            'merktype' => 'required',
-            'status' => 'required',
-            'kondisi' => 'required',
-            'tahun' => 'required',
-            'sumber' => 'required',
-            'kategori_id' => 'required',
-            'bidang_id' => 'required',
+                'kode' => 'required',
+                'kode_barang' => 'required',
+                'nama_barang' => 'required',
+                'merktype' => 'required',
+                'harga' => 'numeric',
+                'kategori_id' => 'required',
+                'bidang_id' => 'required',
             ],$pesan);
             $data = Barang::find($id);
             $data->update($request->all());
