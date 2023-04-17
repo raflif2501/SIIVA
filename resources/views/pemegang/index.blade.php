@@ -6,10 +6,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Bidang</h3>
-                        <a href="{{ route('bidang.create') }}" type="button" class="btn btn-success"
+                        <h3 class="card-title">Data Pemegang Aset</h3>
+                        <a href="{{ route('pemegang.create') }}" type="button" class="btn btn-success"
                             style="float: right">Tambah
-                            Bidang</a>
+                            Pemegang Aset</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
@@ -17,10 +17,13 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kode Bidang</th>
-                                    <th>Nama Bidang</th>
-                                    <th>Kepala Bidang</th>
-                                    <th>Ruang</th>
+                                    <th>Kode</th>
+                                    <th>Nama Peminjam</th>
+                                    <th>Bidang</th>
+                                    <th>Kode Barang</th>
+                                    <th>Nama Barang</th>
+                                    <th>Merk / Type</th>
+                                    <th>Tanggal</th>
                                     @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
                                         <th>Action</th>
                                     @endrole
@@ -34,12 +37,15 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $p->kode }}</td>
-                                        <td>{{ $p->nama_bidang }}</td>
-                                        <td>{{ $p->kepala_bidang }}</td>
-                                        <td>{{ $p->ruang }}</td>
+                                        <td>{{ $p->karyawan->nama }}</td>
+                                        <td>{{ $p->karyawan->bidang->nama_bidang }}</td>
+                                        <td>{{ $p->barang->kode_barang }}</td>
+                                        <td>{{ $p->barang->nama_barang }}</td>
+                                        <td>{{ $p->barang->merktype }}</td>
+                                        <td>{{ $p->tanggal }}</td>
                                         <td>
                                             @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                                                <a href="{{ route('bidang.edit', $p->id) }}"
+                                                <a href="{{ route('pemegang.edit', $p->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
                                                 <input type="button" class="btn btn-sm btn-danger"
                                                     data-id="{{ $p->id }}" onclick="deleteData(this)" value="Delete">
@@ -56,5 +62,5 @@
             </div>
         </div>
     </div>
-    @include('bidang.scriptDelete')
+    @include('pemegang.scriptDelete')
 @endsection

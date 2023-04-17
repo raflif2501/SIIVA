@@ -26,7 +26,7 @@
                                     <th>Bidang</th>
                                     <th>Ruang</th>
                                     @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                                        <th width="280px">Action</th>
+                                        <th>Action</th>
                                     @endrole
                                 </tr>
                             </thead>

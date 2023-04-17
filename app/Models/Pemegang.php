@@ -9,25 +9,18 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-
-class Barang extends Model
+class Pemegang extends Model
 {
+    use HasFactory;
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
     protected $guarded=[];
-    public function bidang()
+    // protected $table='peminjamans';
+    public function barang()
     {
-        return $this->belongsTo(Bidang::class);
+        return $this->belongsTo(Barang::class);
     }
-    public function kategori()
+    public function karyawan()
     {
-        return $this->belongsTo(Kategori::class);
-    }
-    public function peminjaman()
-    {
-        return $this->hasOne(Peminjaman::class);
-    }
-    public function pemegang()
-    {
-        return $this->hasOne(Pemegang::class);
+        return $this->belongsTo(Karyawan::class);
     }
 }

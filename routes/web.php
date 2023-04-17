@@ -9,6 +9,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
+use App\Http\Controllers\PemegangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,5 +37,6 @@ Route::resource('kategori', KategoriController::class);
 Route::resource('karyawan', KaryawanController::class);
 Route::resource('peminjaman', PeminjamanController::class);
 Route::resource('pengembalian', PengembalianController::class);
+Route::resource('pemegang', PemegangController::class);
 });
 // Route::get('/cari', [App\Http\Controllers\SearchController::class, 'cari'])->name('cari');

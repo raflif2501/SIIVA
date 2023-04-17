@@ -159,6 +159,14 @@
                         <li class="nav-header">TRANSAKSI</li>
                         @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
                             <li class="nav-item ">
+                                <a href="{{ route('pemegang.index') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-users-cog"></i>
+                                    <p>Pemegang</p>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                            <li class="nav-item ">
                                 <a href="{{ route('peminjaman.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>Peminjaman</p>
