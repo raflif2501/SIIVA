@@ -11,7 +11,6 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Pemegang extends Model
 {
-    use HasFactory;
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
     protected $guarded=[];
     // protected $table='peminjamans';

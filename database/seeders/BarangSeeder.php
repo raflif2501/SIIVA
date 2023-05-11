@@ -32,6 +32,7 @@ class BarangSeeder extends Seeder
             'nopol'     => 'M 2201 VP',
             'bpkb'     => 'M-04804272',
             'keterangan'     => 'baik',
+            'tanggal_perawatan'     => '2023-12-12',
             'kategori_id'     => '1',
             'bidang_id'     => '1',
         ]);

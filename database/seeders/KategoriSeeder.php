@@ -19,7 +19,7 @@ class KategoriSeeder extends Seeder
             'kode'     => 'SPDMTR',
             'kategori'     => 'Sepeda Motor',
             'jangka_perawatan'     => '60',
-            'tanggal_perawatan'     => '2023-12-12',
+            'jenis_perawatan'     => 'Pajak Tahunan',
         ]);
     }
 }

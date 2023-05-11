@@ -68,7 +68,7 @@ class KategoriController extends Controller
                     'kode' => $request->kode,
                     'kategori' => $request->kategori,
                     'jangka_perawatan' => $request->jangka_perawatan,
-                    'tanggal_perawatan' => $request->tanggal_perawatan,
+                    'jenis_perawatan' => $request->jenis_perawatan,
                 ]);
             }else{
                 Kategori::create([
@@ -76,7 +76,7 @@ class KategoriController extends Controller
                     'kode' => $request->kode,
                     'kategori' => $request->kategori,
                     'jangka_perawatan' => $request->jangka_perawatan,
-                    'tanggal_perawatan' => $request->tanggal_perawatan,
+                    'jenis_perawatan' => $request->jenis_perawatan,
                 ]);
             }
             Alert::success('Success', 'Data Berhasil Ditambahkan');

@@ -38,5 +38,6 @@ Route::resource('karyawan', KaryawanController::class);
 Route::resource('peminjaman', PeminjamanController::class);
 Route::resource('pengembalian', PengembalianController::class);
 Route::resource('pemegang', PemegangController::class);
+Route::get('/cetak/{id}', [PemegangController::class, 'cetak']);
 });
 // Route::get('/cari', [App\Http\Controllers\SearchController::class, 'cari'])->name('cari');

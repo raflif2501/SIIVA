@@ -207,6 +207,29 @@
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
+                                <label>Tanggal Perawatan</label>
+                                <input type="date" name="tanggal_perawatan"
+                                    class="form-control @error('tanggal_perawatan') is-invalid @enderror"
+                                    placeholder="Masukkan Tanggal Perawatan (Boleh Dikosongi)"
+                                    value="{{ old('tanggal_perawatan') }}">
+                                @error('tanggal_perawatan')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label for="Keterangan">Keterangan/label>
+                                    <textarea id="keterangan" name="keterangan" class="form-control" placeholder="Masukkan Keterangan (Boleh Dikosongi)"
+                                        value="{{ old('keterangan') }}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
                                 <label>ID Kategori</label>
                                 <select class="form-control" name="kategori_id">
                                     @foreach ($data1 as $p)
@@ -228,16 +251,6 @@
                                         </option>
                                     @endforeach
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label for="Keterangan">Keterangan/label>
-                                    <textarea id="keterangan" name="keterangan" class="form-control" placeholder="Masukkan Keterangan (Boleh Dikosongi)"
-                                        value="{{ old('keterangan') }}"></textarea>
                             </div>
                         </div>
                     </div>

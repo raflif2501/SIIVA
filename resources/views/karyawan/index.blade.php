@@ -18,11 +18,13 @@
                                 <tr>
                                     <th>No</th>
                                     <th>NIK</th>
+                                    <th>NIP</th>
                                     <th>Nama Lengkap</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Alamat</th>
                                     <th>Status</th>
                                     <th>Jabatan</th>
+                                    <th>Pangkat / Golongan Ruang</th>
                                     <th>Bidang</th>
                                     <th>Ruang</th>
                                     @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
@@ -38,11 +40,13 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $p->nik }}</td>
+                                        <td>{{ $p->nip }}</td>
                                         <td>{{ $p->nama }}</td>
                                         <td>{{ $p->jk }}</td>
                                         <td>{{ $p->alamat }}</td>
                                         <td>{{ $p->status }}</td>
                                         <td>{{ $p->jabatan }}</td>
+                                        <td>{{ $p->pangkat }}</td>
                                         <td>{{ $p->bidang->nama_bidang }}</td>
                                         <td>{{ $p->bidang->ruang }}</td>
                                         <td>

@@ -59,6 +59,7 @@ class KaryawanController extends Controller
             ];
             $this->validate($request,[
                 'nik' => 'required|numeric|min:16|max:16',
+                'nip' => 'unique:karyawans',
                 'nama' => 'required',
                 'jk' => 'required',
                 'alamat' => 'required',

@@ -10,6 +10,7 @@ use App\Models\Pemegang;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class PemegangController extends Controller
 {
@@ -68,7 +69,9 @@ class PemegangController extends Controller
                 Pemegang::create([
                     'id' => $id,
                     'kode' => $request->kode,
+                    'surat' => $request->surat,
                     'tanggal' => $request->tanggal,
+                    'batas' => $request->batas,
                     'barang_id' => $request->barang_id,
                     'karyawan_id' => $request->karyawan_id,
                 ]);
@@ -76,7 +79,9 @@ class PemegangController extends Controller
                 Pemegang::create([
                     'id' => $id,
                     'kode' => $request->kode,
+                    'surat' => $request->surat,
                     'tanggal' => $request->tanggal,
+                    'batas' => $request->batas,
                     'barang_id' => $request->barang_id,
                     'karyawan_id' => $request->karyawan_id,
                 ]);
@@ -94,7 +99,17 @@ class PemegangController extends Controller
      */
     public function show($id)
     {
-        //
+        $kode = Pemegang::find($id);
+        $data = Pemegang::select("*")
+                    ->whereIn('id',  $kode)
+                    ->get();
+        $data1 = Karyawan::select("*")
+        ->where('jabatan',  'Kepala Dinas Pekerjaan Umum dan Tata Ruang Kabupaten Sumenep')
+        ->get();
+        // var_dump($data);
+        // die;
+        $pdf = PDF::loadView('pemegang.cetakpdf', compact('data','data1'));
+        return $pdf->setPaper('a4', 'potrait')->stream();
     }
 
     /**
@@ -128,7 +143,9 @@ class PemegangController extends Controller
             ];
             $this->validate($request,[
                 'kode' => 'required',
+                'surat' => 'required',
                 'tanggal' => 'required',
+                'batas' => 'required',
             ],$pesan);
             $data = Pemegang::find($id);
             // var_dump($request->all());
@@ -149,5 +166,15 @@ class PemegangController extends Controller
         Pemegang::find($id)->delete();
         Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect()->route('pemegang.index');
+    }
+    public function cetak($id)
+    {
+    	$data = Pemegang::select("*")
+                    ->where('id',  $id)
+                    ->get();
+        // var_dump($data);
+        // die;
+        $pdf = PDF::loadView('pemegang.cetak_pdf', compact('data'));
+        return $pdf->setPaper('a4', 'potrait')->stream();
     }
 }

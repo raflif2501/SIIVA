@@ -23,7 +23,9 @@
                                     <th>Kode Barang</th>
                                     <th>Nama Barang</th>
                                     <th>Merk / Type</th>
+                                    <th>Nomer Surat</th>
                                     <th>Tanggal</th>
+                                    <th>Batas</th>
                                     @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
                                         <th>Action</th>
                                     @endrole
@@ -42,11 +44,18 @@
                                         <td>{{ $p->barang->kode_barang }}</td>
                                         <td>{{ $p->barang->nama_barang }}</td>
                                         <td>{{ $p->barang->merktype }}</td>
+                                        <td>{{ $p->surat }}</td>
                                         <td>{{ $p->tanggal }}</td>
+                                        <td>{{ $p->batas }}</td>
                                         <td>
                                             @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
                                                 <a href="{{ route('pemegang.edit', $p->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
+                                                <a href="{{ route('pemegang.show', $p->id) }}" class="btn btn-sm btn-primary"
+                                                    target="_blank">Pernyataan</a>
+                                                <a href="/cetak/{{ $p->id }}" class="btn btn-sm btn-info"
+                                                    target="_blank">Pakta
+                                                    Integritas</a>
                                                 <input type="button" class="btn btn-sm btn-danger"
                                                     data-id="{{ $p->id }}" onclick="deleteData(this)" value="Delete">
                                             @endrole

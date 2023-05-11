@@ -31,10 +31,11 @@
                                     <th>Mesin</th>
                                     <th>Nopol</th>
                                     <th>BPKB</th>
+                                    <th>Tanggal Perawatan</th>
                                     <th>Keterangan</th>
                                     <th>Kategori</th>
                                     <th>Jangka Perawatan</th>
-                                    <th>Tanggal Perawatan</th>
+                                    <th>Jenis Perawatan</th>
                                     <th>Bidang</th>
                                     <th>Ruang</th>
                                     @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
@@ -71,10 +72,11 @@
                                         <td>{{ $p->mesin }}</td>
                                         <td>{{ $p->nopol }}</td>
                                         <td>{{ $p->bpkb }}</td>
+                                        <td>{{ $p->tanggal_perawatan }}</td>
                                         <td>{{ $p->keterangan }}</td>
                                         <td>{{ $p->kategori->kategori }}</td>
                                         <td>{{ $p->kategori->jangka_perawatan }}</td>
-                                        <td>{{ $p->kategori->tanggal_perawatan }}</td>
+                                        <td>{{ $p->kategori->jenis_perawatan }}</td>
                                         <td>{{ $p->bidang->nama_bidang }}</td>
                                         <td>{{ $p->bidang->ruang }}</td>
                                         <td>

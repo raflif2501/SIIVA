@@ -30,6 +30,7 @@ class CreateBarangTable extends Migration
             $table->string('mesin')->nullable();
             $table->string('nopol')->nullable();
             $table->string('bpkb')->nullable();
+            $table->date('tanggal_perawatan')->nullable();
             $table->string('keterangan')->nullable();
             $table->foreignId('kategori_id')->constrained('kategoris');
             $table->foreignId('bidang_id')->constrained('bidangs');

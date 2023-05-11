@@ -55,11 +55,38 @@
                             <div class="col-sm-6">
                                 <!-- text input -->
                                 <div class="form-group">
+                                    <label>Nomer Surat</label>
+                                    <input type="string" name="surat"
+                                        class="form-control @error('surat') is-invalid @enderror"
+                                        placeholder="Masukkan Nomer Surat Pemegang Aset (Boleh Dikosongi)"
+                                        value="{{ $data->surat }}">
+                                    @error('surat')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
                                     <label>Tanggal Pemegang Aset</label>
                                     <input type="date" name="tanggal"
                                         class="form-control @error('tanggal') is-invalid @enderror"
                                         placeholder="Masukkan Tanggal Pemegang Aset" value="{{ $data->tanggal }}">
                                     @error('tanggal')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Batas Tanggal Pemegang Aset</label>
+                                    <input type="date" name="batas"
+                                        class="form-control @error('batas') is-invalid @enderror"
+                                        placeholder="Masukkan Batas Tanggal Pemegang Aset" value="{{ $data->batas }}">
+                                    @error('batas')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

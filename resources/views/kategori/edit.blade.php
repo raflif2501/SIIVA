@@ -54,11 +54,11 @@
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Tanggal Perawatan</label>
-                                <input type="date" name="tanggal_perawatan"
-                                    class="form-control @error('tanggal_perawatan') is-invalid @enderror"
-                                    placeholder="Masukkan Tanggal Perawatan" value="{{ $data->tanggal_perawatan }}">
-                                @error('tanggal_perawatan')
+                                <label>Jenis Perawatan</label>
+                                <input type="text" name="jenis_perawatan"
+                                    class="form-control @error('jenis_perawatan') is-invalid @enderror"
+                                    placeholder="Masukkan jenis Perawatan" value="{{ $data->jenis_perawatan }}">
+                                @error('jenis_perawatan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

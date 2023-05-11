@@ -25,6 +25,19 @@
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
+                                <label>NIP</label>
+                                <input type="text" name="nip" class="form-control @error('nip') is-invalid @enderror"
+                                    placeholder="Masukkan NIP (Boleh Dikosongi)" value="{{ old('nip') }}">
+                                @error('nip')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
                                 <label>Nama Lengkap</label>
                                 <input type="number" name="nama"
                                     class="form-control @error('nama') is-invalid @enderror"
@@ -34,8 +47,6 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
@@ -46,6 +57,8 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
@@ -58,8 +71,6 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
@@ -70,6 +81,8 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
@@ -78,6 +91,19 @@
                                     class="form-control @error('jabatan') is-invalid @enderror"
                                     placeholder="Masukkan Jabatan" value="{{ old('jabatan') }}">
                                 @error('jabatan')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Pangkat / Golongan</label>
+                                <input type="text" name="pangkat"
+                                    class="form-control @error('pangkat') is-invalid @enderror"
+                                    placeholder="Masukkan Pangkat / Golongan Ruang (Contoh :Pembina Tk.I)"
+                                    value="{{ old('pangkat') }}">
+                                @error('pangkat')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

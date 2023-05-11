@@ -90,6 +90,33 @@
                         <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
+                                <label>NIP</label>
+                                <input type="text" name="nip" class="form-control @error('nip') is-invalid @enderror"
+                                    placeholder="Masukkan NIP (Boleh Dikosongi)" value="{{ $data->nip }}" min="16"
+                                    max="16">
+                                @error('nip')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Pangkat / Golongan Ruang</label>
+                                <input type="text" name="pangkat"
+                                    class="form-control @error('pangkat') is-invalid @enderror"
+                                    placeholder="Masukkan Pangkat / Golongan Ruang (Contoh :Pembina Tk.I)"
+                                    value="{{ $data->pangkat }}" min="16" max="16">
+                                @error('pangkat')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
                                 <label>ID Bidang</label>
                                 <select class="form-control" name="bidang_id">
                                     <option value="{{ $data->bidang_id }}">{{ $data->bidang->kode }} -

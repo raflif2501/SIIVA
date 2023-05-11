@@ -16,7 +16,9 @@ class CreatePemegangsTable extends Migration
         Schema::create('pemegangs', function (Blueprint $table) {
             $table->id();
             $table->string('kode');
+            $table->string('surat');
             $table->date('tanggal');
+            $table->date('batas');
             $table->foreignId('barang_id')->constrained('barangs');
             $table->foreignId('karyawan_id')->constrained('karyawans');
             $table->timestamps();
