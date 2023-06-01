@@ -10,6 +10,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\PemegangController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,4 @@ Route::resource('pengembalian', PengembalianController::class);
 Route::resource('pemegang', PemegangController::class);
 Route::get('/cetak/{id}', [PemegangController::class, 'cetak']);
 });
-// Route::get('/cari', [App\Http\Controllers\SearchController::class, 'cari'])->name('cari');
+Route::get('cari', [App\Http\Controllers\SearchController::class, 'cari']);

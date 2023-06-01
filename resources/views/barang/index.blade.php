@@ -57,7 +57,7 @@
                                 @foreach ($data as $p)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $p->kode }}</td>
+                                        <td> {{ QrCode::size(100)->generate($p->kode) }}</td>
                                         <td>{{ $p->kode_barang }}</td>
                                         <td>{{ $p->nama_barang }}</td>
                                         <td>{{ $p->register }}</td>

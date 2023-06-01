@@ -23,9 +23,9 @@
         <div class="notfound-bg"></div>
         <div class="notfound">
             <div class="notfound-404">
-                <h1>STOP</h1>
+                <h1>404</h1>
             </div>
-            <h2>Registrasi / Lupa Password Hubungi Admin</h2>
+            <h2>Halaman Tidak Ditemukan</h2>
             <a href="/">kembali Ke Home</a>
         </div>
     </div>
