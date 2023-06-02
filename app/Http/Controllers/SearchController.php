@@ -12,8 +12,8 @@ class SearchController extends Controller
 {
     public function cari(Request $request)
     {
-    $data = Barang::where('kode',$request->cari) ->get();
-    Alert::success('Success', 'Data Ditemukan');
-    return view('search',compact('data'));
+        $data = Barang::where('kode',$request->cari) ->get();
+        Alert::success('Success', 'Data Ditemukan');
+        return view('search',compact('data'));
     }
 }

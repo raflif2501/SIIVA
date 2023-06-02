@@ -64,6 +64,8 @@
             false);
         html5QrcodeScanner.render(onScanSuccess, onScanFailure);
     </script>
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

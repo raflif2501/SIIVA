@@ -8,6 +8,8 @@ use App\Models\Barang;
 use App\Models\Bidang;
 use App\Models\Kategori;
 use App\Models\Karyawan;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -33,6 +35,18 @@ class HomeController extends Controller
         $bidang = Bidang::count();
         $kategori = Kategori::count();
         $karyawan = Karyawan::count();
-        return view('admin.index',compact('barang','bidang','kategori','karyawan'));
+
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+
+        $data = DB::table('barangs')
+            ->whereYear('tanggal_perawatan',$tahun)
+            ->whereMonth('tanggal_perawatan', $bulan)
+            ->whereDay('tanggal_perawatan', '<=', $tanggal)
+            ->get();
+        // dd($bulan);
+
+        return view('admin.index',compact('barang','bidang','kategori','karyawan','data'));
     }
 }

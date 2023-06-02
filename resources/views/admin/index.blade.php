@@ -64,5 +64,45 @@
                 </div>
             </div>
             <!-- ./col -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Pembayaran Pajak Kendaraan</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">No</th>
+                                            <th>Nama Barang</th>
+                                            <th>Merk/Type</th>
+                                            <th>Nopol</th>
+                                            <th>Pajak</th>
+                                        </tr>
+                                    </thead>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    <tbody>
+                                        @foreach ($data as $p)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $p->nama_barang }}</td>
+                                                <td>{{ $p->merktype }}</td>
+                                                <td>{{ $p->nopol }}</td>
+                                                <td>{{ $p->tanggal_perawatan }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    @endsection
+    </div>
+@endsection
