@@ -22,7 +22,8 @@
                 <div class="col-6">
                     <div id="reader" width="600px"></div>
                     <div class="d-grid gap-2">
-                        <button class="btn btn-primary" type="submit">SEARCH</button>
+                        <button id="clickButton" class="btn btn-primary" type="submit"
+                            style="display:none;">SEARCH</button>
                     </div>
                 </div>
             </div>
@@ -44,6 +45,11 @@
             // document.getElementById('form').action = "/" + id;
             // console.log(id);
             document.getElementById("id").value = id;
+            html5QrcodeScanner.clear();
+            // window.onload = function() {
+            var button = document.getElementById('clickButton');
+            button.form.submit();
+            // }
         }
 
         function onScanFailure(error) {

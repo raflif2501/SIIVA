@@ -36,17 +36,26 @@ class HomeController extends Controller
         $kategori = Kategori::count();
         $karyawan = Karyawan::count();
 
+        $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
         $tahun = Carbon::now()->format('Y');
         $bulan = Carbon::now()->format('m');
         $tanggal = Carbon::now()->format('d');
 
-        $data = DB::table('barangs')
+        $sepeda = DB::table('barangs')
+            ->where('nama_barang','=','Sepeda Motor')
             ->whereYear('tanggal_perawatan',$tahun)
             ->whereMonth('tanggal_perawatan', $bulan)
             ->whereDay('tanggal_perawatan', '<=', $tanggal)
             ->get();
-        // dd($bulan);
 
-        return view('admin.index',compact('barang','bidang','kategori','karyawan','data'));
+        $motor = DB::table('barangs')
+            ->whereNotNull('nopol')
+            ->whereYear('tanggal_perawatan',$tahun)
+            ->whereMonth('tanggal_perawatan', $bulan)
+            ->whereDay('tanggal_perawatan', '<=', $tanggal)
+            ->get();
+        // dd($mobil);
+
+        return view('admin.index',compact('barang','bidang','kategori','karyawan','today','sepeda','motor'));
     }
 }

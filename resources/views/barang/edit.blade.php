@@ -219,7 +219,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
                                 <label for="keterangan">Keterangan/label>
