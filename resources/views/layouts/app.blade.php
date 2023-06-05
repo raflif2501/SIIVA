@@ -61,40 +61,69 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('admin') }}/dist/img/avatar5.png"
-                            class="user-image img-circle elevation-2 alt=" User Image">
+                        <img src="{{ asset('admin') }}/dist/img/avatar5.png" class="user-image img-circle elevation-2"
+                            alt="User Image">
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="{{ asset('admin') }}/dist/img/avatar5.png" class="img-circle elevation-2"
-                                alt="User Image">
-                            <h5>
-                                {{ Auth::user()->name }}
-                            </h5>
-                            @php
-                                $id = Auth::user()->id;
-                            @endphp
-                            @role('admin')
-                                <a href="{{ route('users.edit', $id) }}"><u>Edit
-                                        Profile</u></a>
-                            @endrole
+                            <div class="col-md-12">
+                                <div class="card card-widget widget-user">
+                                    <div class="widget-user-header bg-primary">
+                                        <h3 class="widget-user-username">{{ Auth::user()->name }}</h3>
+                                        <h5 class="widget-user-desc" style="text-transform:uppercase">
+                                            {{ Auth::user()->getRoleNames()->first() }}</h5>
+                                    </div>
+                                    <div class="widget-user-image">
+                                        <img class="img-circle elevation-2"
+                                            src="{{ asset('admin') }}/dist/img/avatar5.png" alt="User Avatar">
+                                    </div>
+                                    @php
+                                        $id = Auth::user()->id;
+                                    @endphp
+                                </div>
+                            </div>
                         </li>
                         <li class="user-footer">
-                            <div class="pull-right">
-                                <a href="" class="btn btn-transparant"></a>
-                                <a href="" class="btn btn-transparant"></a>
-                                <a href="" class="btn btn-transparant"></a>
-                                <a class="btn btn-danger" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
+                            <div class="card-footer">
+                                <div class="row">
+                                    @role('admin')
+                                        <div class="col-sm-6">
+                                            <div class="description-block">
+                                                <a class="btn btn-block btn-warning"
+                                                    href="{{ route('users.edit', $id) }}">{{ __('Edit') }}</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="description-block">
+                                                <a class="btn btn-block btn-danger" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                                                    {{ __('Logout') }}
+                                                </a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @endrole
+                                    @role('sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                                        <div class="col-sm-12">
+                                            <div class="description-block">
+                                                <a class="btn btn-block btn-danger" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @endrole
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -165,7 +194,7 @@
                             <li class="nav-item ">
                                 <a href="{{ route('pemegang.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-users-cog"></i>
-                                    <p>Pemegang</p>
+                                    <p>Pemegang Aset</p>
                                 </a>
                             </li>
                         @endrole

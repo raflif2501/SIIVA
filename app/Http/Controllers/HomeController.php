@@ -41,21 +41,45 @@ class HomeController extends Controller
         $bulan = Carbon::now()->format('m');
         $tanggal = Carbon::now()->format('d');
 
-        $sepeda = DB::table('barangs')
-            ->where('nama_barang','=','Sepeda Motor')
-            ->whereYear('tanggal_perawatan',$tahun)
-            ->whereMonth('tanggal_perawatan', $bulan)
-            ->whereDay('tanggal_perawatan', '<=', $tanggal)
-            ->get();
-
         $motor = DB::table('barangs')
             ->whereNotNull('nopol')
             ->whereYear('tanggal_perawatan',$tahun)
             ->whereMonth('tanggal_perawatan', $bulan)
             ->whereDay('tanggal_perawatan', '<=', $tanggal)
             ->get();
-        // dd($mobil);
 
-        return view('admin.index',compact('barang','bidang','kategori','karyawan','today','sepeda','motor'));
+        $pajak = DB::table('barangs')
+            ->whereNotNull('nopol')
+            ->whereYear('tanggal_perawatan',$tahun)
+            ->whereMonth('tanggal_perawatan', $bulan)
+            ->whereDay('tanggal_perawatan', '<=', $tanggal)
+            ->count();
+
+        $kywn = DB::table('karyawans')
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->count();
+
+        $akun = DB::table('users')
+            ->whereYear('updated_at',$tahun)
+            ->whereMonth('updated_at', $bulan)
+            ->whereDay('updated_at', '=', $tanggal)
+            ->count();
+
+        $aset = DB::table('barangs')
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->count();
+
+        $pemegang = DB::table('pemegangs')
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->count();
+        // dd($pajak);
+
+        return view('admin.index',compact('barang','bidang','kategori','karyawan','today','motor','pajak','kywn','akun','aset','pemegang'));
     }
 }

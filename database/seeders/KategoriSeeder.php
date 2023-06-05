@@ -17,9 +17,21 @@ class KategoriSeeder extends Seeder
     {
         $kategori = Kategori::create([
             'kode'     => 'SPDMTR',
-            'kategori'     => 'Sepeda Motor',
-            'jangka_perawatan'     => '60',
-            'jenis_perawatan'     => 'Pajak Tahunan',
+            'kategori'     => 'Kendaraan Roda 2',
+            'jangka_perawatan'     => '30',
+            'jenis_perawatan'     => 'Service Rutin',
+        ]);
+        $kategori = Kategori::create([
+            'kode'     => 'RD2',
+            'kategori'     => 'Kendaraan Roda 3',
+            'jangka_perawatan'     => '30',
+            'jenis_perawatan'     => 'Service Rutin',
+        ]);
+        $kategori = Kategori::create([
+            'kode'     => 'MTR',
+            'kategori'     => 'Kendaraan Roda 4',
+            'jangka_perawatan'     => '30',
+            'jenis_perawatan'     => 'Service Rutin',
         ]);
     }
 }

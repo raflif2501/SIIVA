@@ -68,7 +68,7 @@
     <!-- ./col -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Pembayaran Pajak Kendaraan Bermotor ( {{ $today }} )</h3>
@@ -100,6 +100,72 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-row card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Catatan
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h5 class="card-title">
+                                    <i class="fas fa-money-check-alt mr-2"></i>
+                                    Pajak Kendaraan Bermotor
+                                </h5>
+                                <div class="card-tools">
+                                    <span>( {{ $pajak }} )</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h5 class="card-title">
+                                    <i class="fas fa-tools mr-2"></i>
+                                    Aset Baru
+                                </h5>
+                                <div class="card-tools">
+                                    <span>( {{ $aset }} )</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h5 class="card-title">
+                                    <i class="fas fa-users-cog mr-2"></i>
+                                    Pemegang Aset Baru
+                                </h5>
+                                <div class="card-tools">
+                                    <span>( {{ $pemegang }} )</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h5 class="card-title">
+                                    <i class="fas fa-users mr-2"></i>
+                                    Karyawan Baru
+                                </h5>
+                                <div class="card-tools">
+                                    <span>( {{ $kywn }} )</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h5 class="card-title">
+                                    <i class="fas fa-user mr-2"></i>
+                                    Akun Diperbarui
+                                </h5>
+                                <div class="card-tools">
+                                    <span>( {{ $akun }} )</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
