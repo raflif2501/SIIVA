@@ -11,6 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class BarangController extends Controller
 {
@@ -195,5 +196,11 @@ class BarangController extends Controller
         Barang::find($id)->delete();
         Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect()->route('aset.index');
+    }
+    public function stiker()
+    {
+    	$data = Barang::all();
+        // var_dump($qrcode);die;
+        return view ('barang.stiker', compact('data'));
     }
 }

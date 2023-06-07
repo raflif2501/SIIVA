@@ -7,8 +7,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Data Aset</h3>
-                        <a href="{{ route('aset.create') }}" type="button" class="btn btn-success" style="float: right">Tambah
-                            Aset</a>
+                        <div style="float: right">
+                            <a href="/stiker" type="button" class="btn btn-primary" target="_blank">Cetak Stiker</a>
+                            <a href="{{ route('aset.create') }}" type="button" class="btn btn-success">Tambah
+                                Aset</a>
+                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">

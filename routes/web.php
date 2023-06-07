@@ -40,5 +40,6 @@ Route::resource('peminjaman', PeminjamanController::class);
 Route::resource('pengembalian', PengembalianController::class);
 Route::resource('pemegang', PemegangController::class);
 Route::get('/cetak/{id}', [PemegangController::class, 'cetak']);
+Route::get('/stiker', [BarangController::class,'stiker']);
 });
 Route::get('cari', [App\Http\Controllers\SearchController::class, 'cari']);
