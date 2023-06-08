@@ -10,6 +10,7 @@ use App\Models\Bidang;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class KaryawanController extends Controller
 {
@@ -161,5 +162,18 @@ class KaryawanController extends Controller
         Karyawan::find($id)->delete();
         Alert::success('Success', 'Data Berhasil Dihapus');
         return redirect()->route('karyawan.index');
+    }
+
+    public function baru()
+    {
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+        $data = Karyawan::select("*")
+        ->whereYear('created_at',$tahun)
+        ->whereMonth('created_at', $bulan)
+        ->whereDay('created_at', '=', $tanggal)
+        ->get();
+        return view('karyawan.index', compact('data'));
     }
 }

@@ -10,6 +10,7 @@ use DB;
 use Hash;
 use Illuminate\Support\Arr;
 use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -139,5 +140,18 @@ public function update(Request $request, $id)
         User::find($id)->delete();
         Alert::success('Success', 'Data Admin Berhasil Dihapus');
         return redirect()->route('users.index');
+    }
+
+    public function baru()
+    {
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+        $data = User::select("*")
+            ->whereYear('updated_at',$tahun)
+            ->whereMonth('updated_at', $bulan)
+            ->whereDay('updated_at', '=', $tanggal)
+            ->get();
+        return view('users.index', compact('data'));
     }
 }

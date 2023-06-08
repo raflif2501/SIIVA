@@ -13,31 +13,58 @@
 </head>
 
 <body>
+    <style type="text/css">
+        table tr td {
+            font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+            font-size: 24px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 400;
+            font-color: white;
+            /* line-height: 50px; */
+        }
+    </style>
     <div class="s131">
-        <form>
-            <div class="inner-form">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">Kode Barang</th>
-                            <th scope="col">Nama Barang</th>
-                            <th scope="col">Merk/Type</th>
-                            <th scope="col">Tahun</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $p)
-                            <tr>
-                                <td>{{ $p->kode_barang }}</td>
-                                <td>{{ $p->nama_barang }}</td>
-                                <td>{{ $p->merktype }}</td>
-                                <td>{{ $p->tahun }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+        <div class="container-fluid-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-header">
+                        <div class="inner-form">
+                            <table>
+                                <tbody>
+                                    @foreach ($data as $p)
+                                        <tr>
+                                            <td width=150px>Kode Barang</td>
+                                            <td>: {{ $p->kode_barang }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width=150px>Nama Barang</td>
+                                            <td>: {{ $p->nama_barang }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width=150px>Register</td>
+                                            <td>: {{ $p->register }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width=150px>Merk / Type</td>
+                                            <td>: {{ $p->merktype }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width=150px>Tahun</td>
+                                            <td>: {{ $p->tahun }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width=150px>Asal</td>
+                                            <td>: {{ $p->asal }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
     <script src="{{ asset('search') }}/js/extention/choices.js"></script>
     <script>

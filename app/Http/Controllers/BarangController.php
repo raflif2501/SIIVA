@@ -11,6 +11,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use PDF;
 
 class BarangController extends Controller
@@ -202,5 +203,41 @@ class BarangController extends Controller
     	$data = Barang::all();
         // var_dump($qrcode);die;
         return view ('barang.stiker', compact('data'));
+    }
+
+    public function baru()
+    {
+        $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+
+        $data = Barang::select("*")
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->get();
+        // var_dump($data);die;
+        return view ('barang.baru', compact('data'));
+    }
+    public function stikerbaru()
+    {
+        $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+
+    	$data = Barang::select("*")
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->get();
+        $baru = Barang::select("*")
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->count();
+        // var_dump($qrcode);die;
+        return view ('barang.stikerbaru', compact('data','baru'));
     }
 }

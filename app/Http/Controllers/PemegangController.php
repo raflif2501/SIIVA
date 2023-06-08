@@ -10,6 +10,8 @@ use App\Models\Pemegang;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use PDF;
 
 class PemegangController extends Controller
@@ -27,7 +29,13 @@ class PemegangController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        $data = Pemegang::all();
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+
+        $data = Pemegang::select("*")
+            ->whereYear('tanggal', '=',$tahun)
+            ->get();
         return view('pemegang.index', compact('data'));
     }
 
@@ -176,5 +184,36 @@ class PemegangController extends Controller
         // die;
         $pdf = PDF::loadView('pemegang.cetak_pdf', compact('data'));
         return $pdf->setPaper('a4', 'potrait')->stream();
+    }
+    public function arsip()
+    {
+        // $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+
+        $arsip = Pemegang::select("*")
+            ->whereYear('batas', '<',$tahun)
+            // ->whereMonth('batas', '<=',$bulan)
+            ->get();
+
+        $terkecil = Pemegang::select('batas')
+        ->whereYear('batas', '<',$tahun)
+        ->get();
+        // dd($terkecil);
+        return view('pemegang.arsip', compact('arsip','terkecil'));
+    }
+
+    public function baru()
+    {
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+        $data = Pemegang::select("*")
+        ->whereYear('created_at',$tahun)
+        ->whereMonth('created_at', $bulan)
+        ->whereDay('created_at', '=', $tanggal)
+        ->get();
+        return view('pemegang.index', compact('data'));
     }
 }

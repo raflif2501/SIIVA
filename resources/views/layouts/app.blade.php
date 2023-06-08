@@ -198,7 +198,7 @@
                                 </a>
                             </li>
                         @endrole
-                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                        {{-- @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
                             <li class="nav-item ">
                                 <a href="{{ route('peminjaman.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -211,6 +211,15 @@
                                 <a href="{{ route('pengembalian.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-sign-in-alt"></i>
                                     <p>Pengembalian</p>
+                                </a>
+                            </li>
+                        @endrole --}}
+                        <li class="nav-header">ARSIP</li>
+                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                            <li class="nav-item ">
+                                <a href="/arsip" class="nav-link">
+                                    <i class="nav-icon fas fa-file-alt"></i>
+                                    <p>Arsip Pemegang Aset</p>
                                 </a>
                             </li>
                         @endrole

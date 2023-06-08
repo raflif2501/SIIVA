@@ -47,12 +47,12 @@
     <div class="content">
         @foreach ($data as $p)
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-sm-8">
                     <center>
                         <p>DINAS PU TATA RUANG KABUPATEN SUMENEP</p>
                     </center>
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-sm-9">
                             <table id="example1" class="">
                                 <tbody>
                                     <tr>
@@ -78,7 +78,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-sm-3">
                             <table id="example1" class="">
                                 <tbody>
                                     <tr>

@@ -118,7 +118,9 @@
                                     Pajak Kendaraan Bermotor
                                 </h5>
                                 <div class="card-tools">
-                                    <span>( {{ $pajak }} )</span>
+                                    <a href="/home">
+                                        <span>( {{ $pajak }} )</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +131,9 @@
                                     Aset Baru
                                 </h5>
                                 <div class="card-tools">
-                                    <span>( {{ $aset }} )</span>
+                                    <a href="/asetbaru">
+                                        <span>( {{ $aset }} )</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +144,9 @@
                                     Pemegang Aset Baru
                                 </h5>
                                 <div class="card-tools">
-                                    <span>( {{ $pemegang }} )</span>
+                                    <a href="/pemegangbaru">
+                                        <span>( {{ $pemegang }} )</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -151,7 +157,9 @@
                                     Karyawan Baru
                                 </h5>
                                 <div class="card-tools">
-                                    <span>( {{ $kywn }} )</span>
+                                    <a href="/karyawanbaru">
+                                        <span>( {{ $kywn }} )</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -162,7 +170,9 @@
                                     Akun Diperbarui
                                 </h5>
                                 <div class="card-tools">
-                                    <span>( {{ $akun }} )</span>
+                                    <a href="/userdiperbarui">
+                                        <span>( {{ $akun }} )</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
