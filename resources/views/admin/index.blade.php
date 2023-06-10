@@ -71,7 +71,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Pembayaran Pajak Kendaraan Bermotor ( {{ $today }} )</h3>
+                        <h3 class="card-title">Pajak Kendaraan Yang Belum Bayar ( {{ $today }} )</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -115,7 +115,7 @@
                             <div class="card-header">
                                 <h5 class="card-title">
                                     <i class="fas fa-money-check-alt mr-2"></i>
-                                    Pajak Kendaraan Bermotor
+                                    Pajak Belum Bayar
                                 </h5>
                                 <div class="card-tools">
                                     <a href="/home">
@@ -153,12 +153,38 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h5 class="card-title">
+                                    <i class="fas fa-users-cog mr-2"></i>
+                                    Perubahan Pemegang Aset
+                                </h5>
+                                <div class="card-tools">
+                                    <a href="/pemegangganti">
+                                        <span>( {{ $pengganti }} )</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h5 class="card-title">
                                     <i class="fas fa-users mr-2"></i>
                                     Karyawan Baru
                                 </h5>
                                 <div class="card-tools">
                                     <a href="/karyawanbaru">
                                         <span>( {{ $kywn }} )</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h5 class="card-title">
+                                    <i class="fas fa-users mr-2"></i>
+                                    Mutasi Karyawan
+                                </h5>
+                                <div class="card-tools">
+                                    <a href="/karyawanmutasi">
+                                        <span>( {{ $mts }} )</span>
                                     </a>
                                 </div>
                             </div>

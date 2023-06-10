@@ -8,6 +8,7 @@ use App\Models\Barang;
 use App\Models\Bidang;
 use App\Models\Kategori;
 use App\Models\Karyawan;
+use App\Models\Pemegang;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -61,6 +62,12 @@ class HomeController extends Controller
             ->whereDay('created_at', '=', $tanggal)
             ->count();
 
+        $mts = DB::table('karyawans')
+            ->whereYear('updated_at',$tahun)
+            ->whereMonth('updated_at', $bulan)
+            ->whereDay('updated_at', '=', $tanggal)
+            ->count();
+
         $akun = DB::table('users')
             ->whereYear('updated_at',$tahun)
             ->whereMonth('updated_at', $bulan)
@@ -78,8 +85,21 @@ class HomeController extends Controller
             ->whereMonth('created_at', $bulan)
             ->whereDay('created_at', '=', $tanggal)
             ->count();
-        // dd($pajak);
 
-        return view('admin.index',compact('barang','bidang','kategori','karyawan','today','motor','pajak','kywn','akun','aset','pemegang'));
+        $p = Pemegang::select("barang_id")
+            ->whereYear('updated_at',$tahun)
+            ->whereMonth('updated_at', $bulan)
+            ->whereDay('updated_at', '=', $tanggal)
+            ->get();
+
+        $pengganti = DB::table('pemegangs')
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->whereIn('barang_id',$p)
+            ->count();
+        // dd($pengganti);
+
+        return view('admin.index',compact('barang','bidang','kategori','karyawan','today','motor','pajak','kywn','mts','akun','aset','pemegang','pengganti'));
     }
 }

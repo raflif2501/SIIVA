@@ -170,10 +170,34 @@ class KaryawanController extends Controller
         $bulan = Carbon::now()->format('m');
         $tanggal = Carbon::now()->format('d');
         $data = Karyawan::select("*")
-        ->whereYear('created_at',$tahun)
-        ->whereMonth('created_at', $bulan)
-        ->whereDay('created_at', '=', $tanggal)
-        ->get();
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->get();
         return view('karyawan.index', compact('data'));
+    }
+
+    public function mts()
+    {
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+        $data = Karyawan::select("*")
+            ->whereYear('updated_at',$tahun)
+            ->whereMonth('updated_at', $bulan)
+            ->whereDay('updated_at', '=', $tanggal)
+            ->get();
+        return view('karyawan.index', compact('data'));
+    }
+
+    public function mutasi()
+    {
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+        $data = Karyawan::select("*")
+            ->whereYear('updated_at',$tahun)
+            ->get();
+        return view('karyawan.mutasi', compact('data'));
     }
 }

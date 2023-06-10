@@ -223,6 +223,22 @@
                                 </a>
                             </li>
                         @endrole
+                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                            <li class="nav-item ">
+                                <a href="/perubahan" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>Perubahan Pemegang</p>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                            <li class="nav-item ">
+                                <a href="/mutasikaryawan" class="nav-link">
+                                    <i class="nav-icon fas fa-user-edit"></i>
+                                    <p>Karyawan Diperbarui</p>
+                                </a>
+                            </li>
+                        @endrole
                         @role('admin')
                             <li class="nav-header">ADMIN</li>
                             <li class="nav-item ">

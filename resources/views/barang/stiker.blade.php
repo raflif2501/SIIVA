@@ -47,7 +47,7 @@
     <div class="content">
         @foreach ($data as $p)
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                     <center>
                         <p>DINAS PU TATA RUANG KABUPATEN SUMENEP</p>
                     </center>
@@ -75,6 +75,14 @@
                                         <td width=75px;>Asal</td>
                                         <td width=150px;>: {{ $p->asal }}</td>
                                     </tr>
+                                    @foreach ($pemegang as $d)
+                                        @if ($d->karyawan->nama != null)
+                                            <tr>
+                                                <td width=75px;>Pemegang</td>
+                                                <td width=150px;>: {{ $d->karyawan->nama }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -82,7 +90,7 @@
                             <table id="example1" class="">
                                 <tbody>
                                     <tr>
-                                        <td> {{ QrCode::size(100)->generate($p->kode) }}</td>
+                                        <td> {{ QrCode::size(110)->generate($p->kode) }}</td>
                                     </tr>
                                 </tbody>
                             </table>

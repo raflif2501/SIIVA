@@ -107,9 +107,9 @@ class PemegangController extends Controller
      */
     public function show($id)
     {
-        $kode = Pemegang::find($id);
+        // $kode = Pemegang::find($id);
         $data = Pemegang::select("*")
-                    ->whereIn('id',  $kode)
+                    ->where('id',  $id)
                     ->get();
         $data1 = Karyawan::select("*")
         ->where('jabatan',  'Kepala Dinas Pekerjaan Umum dan Tata Ruang Kabupaten Sumenep')
@@ -210,10 +210,75 @@ class PemegangController extends Controller
         $bulan = Carbon::now()->format('m');
         $tanggal = Carbon::now()->format('d');
         $data = Pemegang::select("*")
-        ->whereYear('created_at',$tahun)
-        ->whereMonth('created_at', $bulan)
-        ->whereDay('created_at', '=', $tanggal)
-        ->get();
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->get();
         return view('pemegang.index', compact('data'));
+    }
+
+    public function ganti()
+    {
+        $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+
+        $pemegang = DB::table('pemegangs')
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->count();
+
+        $p = Pemegang::select("barang_id")
+            ->whereYear('updated_at',$tahun)
+            ->whereMonth('updated_at', $bulan)
+            ->whereDay('updated_at', '=', $tanggal)
+            ->get();
+
+        $data = Pemegang::select("*")
+            ->whereYear('created_at',$tahun)
+            ->whereMonth('created_at', $bulan)
+            ->whereDay('created_at', '=', $tanggal)
+            ->whereIn('barang_id',$p)
+            ->get();
+        return view('pemegang.index', compact('data'));
+    }
+
+    public function perubahan()
+    {
+        $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
+        $tahun = Carbon::now()->format('Y');
+        $bulan = Carbon::now()->format('m');
+        $tanggal = Carbon::now()->format('d');
+
+        $p = Pemegang::select("barang_id")
+            ->whereYear('updated_at',$tahun)
+            // ->whereMonth('updated_at', $bulan)
+            // ->whereDay('updated_at', '=', $tanggal)
+            ->get();
+
+        $data = Pemegang::select("*")
+            ->whereYear('created_at',$tahun)
+            ->whereYear('tanggal',$tahun)
+            ->whereIn('barang_id',$p)
+            ->get();
+
+        $d = Pemegang::select("barang_id")
+            ->whereYear('updated_at',$tahun)
+            // ->whereMonth('updated_at', $bulan)
+            // ->whereDay('updated_at', '=', $tanggal)
+            ->whereIn('barang_id',$p)
+            ->get();
+
+        $data1 = Pemegang::select("*")
+            ->whereYear('updated_at',$tahun)
+            ->whereYear('tanggal',$tahun)
+            ->whereIn('barang_id',$d)
+            // ->whereMonth('created_at', $bulan)
+            // ->whereDay('created_at', '=', $tanggal)
+            ->get();
+
+        return view('pemegang.perubahan', compact('data','data1','tahun'));
     }
 }

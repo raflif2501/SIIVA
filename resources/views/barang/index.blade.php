@@ -84,6 +84,9 @@
                                         <td>{{ $p->bidang->ruang }}</td>
                                         <td>
                                             @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                                                <a href="{{ route('aset.show', $p->id) }}" target="_blank"
+                                                    class="btn btn-sm btn-primary">Cetak
+                                                    Stiker</a>
                                                 <a href="{{ route('aset.edit', $p->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
                                                 <input type="button" class="btn btn-sm btn-danger"

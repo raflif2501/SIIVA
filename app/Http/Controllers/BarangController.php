@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\Barang;
 use App\Models\Kategori;
 use App\Models\Bidang;
+use App\Models\Pemegang;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
@@ -138,7 +139,28 @@ class BarangController extends Controller
      */
     public function show($id)
     {
-        //
+        $tahun = Carbon::now()->format('Y');
+
+        $data = Barang::select("*")
+        ->where('id',$id)
+        ->get();
+
+        $d = Barang::select("id")
+        ->where('id',$id)
+        ->get();
+
+        $pemegang = Pemegang::select("*")
+            ->whereIn('barang_id',$d)
+            ->whereYear('created_at',$tahun)
+            ->orderByRaw('created_at DESC')
+            ->first();
+        if($pemegang != null){
+            $nama = $pemegang->karyawan->nama;
+        } else {
+            $nama = null;
+        }
+        // dd($nama);
+        return view ('barang.stiker1', compact('data','nama'));
     }
 
     /**
@@ -201,8 +223,16 @@ class BarangController extends Controller
     public function stiker()
     {
     	$data = Barang::all();
-        // var_dump($qrcode);die;
-        return view ('barang.stiker', compact('data'));
+    	$id = Barang::select("id")->get();
+        $pemegang = Pemegang::select("*")
+            ->where('barang_id', [$id])->get();
+        // dd($pemegang);
+        // if($pemegang != null){
+        //     $nama = $pemegang->karyawan->nama;
+        // } else {
+        //     $nama = null;
+        // }
+        return view ('barang.stiker', compact('data','pemegang'));
     }
 
     public function baru()
@@ -227,17 +257,27 @@ class BarangController extends Controller
         $bulan = Carbon::now()->format('m');
         $tanggal = Carbon::now()->format('d');
 
-    	$data = Barang::select("*")
+    	$data = Pemegang::select("*")
             ->whereYear('created_at',$tahun)
             ->whereMonth('created_at', $bulan)
             ->whereDay('created_at', '=', $tanggal)
             ->get();
-        $baru = Barang::select("*")
-            ->whereYear('created_at',$tahun)
-            ->whereMonth('created_at', $bulan)
-            ->whereDay('created_at', '=', $tanggal)
-            ->count();
+
+        // $d = Barang::select("id")
+        //     ->where('id',$data->id)
+        //     ->get();
+
+        // $pemegang = Pemegang::select("*")
+        //     ->whereIn('barang_id',$d)
+        //     ->whereYear('created_at',$tahun)
+        //     ->orderByRaw('created_at DESC')
+        //     ->first();
+        // if($pemegang != null){
+        //     $nama = $pemegang->karyawan->nama;
+        // } else {
+        //     $nama = null;
+        // }
         // var_dump($qrcode);die;
-        return view ('barang.stikerbaru', compact('data','baru'));
+        return view ('barang.stikerbaru', compact('data'));
     }
 }

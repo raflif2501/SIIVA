@@ -28,6 +28,6 @@ class Barang extends Model
     }
     public function pemegang()
     {
-        return $this->hasOne(Pemegang::class);
+        return $this->hasMany(Pemegang::class);
     }
 }

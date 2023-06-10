@@ -75,12 +75,12 @@
                                         <td width=75px;>Asal</td>
                                         <td width=150px;>: {{ $p->asal }}</td>
                                     </tr>
-                                    {{-- @if ($nama != null)
+                                    @if ($nama != null)
                                         <tr>
                                             <td width=75px;>Pemegang</td>
                                             <td width=150px;>: {{ $nama }}</td>
                                         </tr>
-                                    @endif --}}
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
