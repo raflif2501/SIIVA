@@ -281,4 +281,31 @@ class PemegangController extends Controller
 
         return view('pemegang.perubahan', compact('data','data1','tahun'));
     }
+
+    public function stiker($id)
+    {
+        $tahun = Carbon::now()->format('Y');
+
+        $data = Pemegang::select("*")
+            ->where('id',$id)
+            ->get();
+
+        // $pemegang = Pemegang::select("*")
+        //     ->whereIn('barang_id',$d)
+        //     ->whereYear('created_at',$tahun)
+        //     ->orderByRaw('created_at DESC')
+        //     ->first();
+
+        // $d = Pemegang::select("barang_id")
+        //     ->where('id',$id)
+        //     ->get();
+
+        // if($pemegang != null){
+        //     $nama = $pemegang->karyawan->nama;
+        // } else {
+        //     $nama = null;
+        // }
+        // dd($nama);
+        return view ('pemegang.stiker', compact('data'));
+    }
 }

@@ -7,9 +7,43 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Data Karyawan</h3>
-                        <a href="{{ route('karyawan.create') }}" type="button" class="btn btn-success"
-                            style="float: right">Tambah
-                            Karyawan</a>
+                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                            <div style="float: right">
+                                <a href="{{ route('karyawan.create') }}" type="button" class="btn btn-success mr-1">Tambah
+                                    Karyawan </a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary mr-1" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    Upload Excel
+                                </button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Upload File Excel</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form action="/importkaryawan" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <input type="file" name="file" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endrole
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">

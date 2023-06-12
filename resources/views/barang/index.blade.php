@@ -7,11 +7,43 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Data Aset</h3>
-                        <div style="float: right">
-                            <a href="/stiker" type="button" class="btn btn-primary" target="_blank">Cetak Stiker</a>
-                            <a href="{{ route('aset.create') }}" type="button" class="btn btn-success">Tambah
-                                Aset</a>
-                        </div>
+                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                            <div style="float: right">
+                                <a href="/stiker" type="button" class="btn btn-primary active" target="_blank">Cetak Stiker</a>
+                                <a href="{{ route('aset.create') }}" type="button" class="btn btn-success">Tambah
+                                    Aset</a>
+                                <button type="button" class="btn btn-primary mr-1" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    Upload Excel
+                                </button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Upload File Excel</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form action="/importbarang" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <input type="file" name="file" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endrole
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
