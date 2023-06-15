@@ -49,50 +49,56 @@ class UserSeeder extends Seeder
          'password' => bcrypt('rafliPUTR;'),
          ]);
          $admin->assignRole('admin');
+         $admin = User::create([
+            'name' => 'Akbar Riski Darrani, A.Md',
+            'email' => 'akbarriskidarrani@admin.com',
+            'password' => bcrypt('akbarPUTR;'),
+            ]);
+            $admin->assignRole('admin');
 
          // Sekdis
          $sekdis = User::create([
-         'name' => 'Ahmad Zairosi',
-         'email' => 'ahmadzairosi@sekdis.com',
-         'password' => bcrypt('rosiPUTR;'),
+         'name' => 'Ir. RENITA SALANTI, MT',
+         'email' => 'renitasalanti@sekdis.com',
+         'password' => bcrypt('renitaPUTR;'),
          ]);
          $sekdis->assignRole('sekdis');
 
          // Bidang
          $bsda = User::create([
-        'name' => 'Ahmad',
-        'email' => 'ahmad@sda.com',
-        'password' => bcrypt('ahmadSDA;'),
+        'name' => 'HENDRI HARTONNO, ST., MT',
+        'email' => 'hendrihartonno@sda.com',
+        'password' => bcrypt('hendriSDA;'),
         ]);
         $bsda->assignRole('B-SDA');
         $bbm = User::create([
-        'name' => 'Ahmad',
-        'email' => 'ahmad@bm.com',
-        'password' => bcrypt('ahmadBM;'),
+        'name' => 'AGUS ADI HIDAYAT, STP.,MT',
+        'email' => 'agusadihidayat@bm.com',
+        'password' => bcrypt('agusadiBM;'),
         ]);
         $bbm->assignRole('B-BM');
         $bpbp = User::create([
-        'name' => 'Ahmad',
-        'email' => 'ahmad@pbp.com',
-        'password' => bcrypt('ahmadPBP;'),
+        'name' => 'BENNY IRAWAN, ST., MT',
+        'email' => 'bennyirawan@pbp.com',
+        'password' => bcrypt('bennyPBP;'),
         ]);
         $bpbp->assignRole('B-PBP');
         $bamdp = User::create([
-        'name' => 'Ahmad',
-        'email' => 'ahmad@amdp.com',
-        'password' => bcrypt('ahmadAMDP;'),
+        'name' => 'DEDI FALAHUDDIN, ST., MT',
+        'email' => 'dedifalahuddin@amdp.com',
+        'password' => bcrypt('dediAMDP;'),
         ]);
         $bamdp->assignRole('B-AMdP');
         $bbjk = User::create([
-        'name' => 'Ahmad',
-        'email' => 'ahmad@bjk.com',
-        'password' => bcrypt('ahmadBJK;'),
+        'name' => 'SALAMET SUPRIYADI, ST., M.Si',
+        'email' => 'salametsupriyadi@bjk.com',
+        'password' => bcrypt('salametBJK;'),
         ]);
         $bbjk->assignRole('B-BJK');
         $btr = User::create([
-        'name' => 'Ahmad',
-        'email' => 'ahmad@tr.com',
-        'password' => bcrypt('ahmadTR;'),
+        'name' => 'HARIYANTO EFFENDI, ST., MT',
+        'email' => 'hariyantoeffendi@tr.com',
+        'password' => bcrypt('hariyantoTR;'),
         ]);
         $btr->assignRole('B-TR');
     }

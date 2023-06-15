@@ -151,8 +151,8 @@ class BarangController extends Controller
 
         $pemegang = Pemegang::select("*")
             ->whereIn('barang_id',$d)
-            ->whereYear('created_at',$tahun)
-            ->orderByRaw('created_at DESC')
+            ->whereYear('tanggal',$tahun)
+            ->orderByRaw('tanggal DESC')
             ->first();
         if($pemegang != null){
             $nama = $pemegang->karyawan->nama;
@@ -262,22 +262,81 @@ class BarangController extends Controller
             ->whereMonth('created_at', $bulan)
             ->whereDay('created_at', '=', $tanggal)
             ->get();
-
-        // $d = Barang::select("id")
-        //     ->where('id',$data->id)
-        //     ->get();
-
-        // $pemegang = Pemegang::select("*")
-        //     ->whereIn('barang_id',$d)
-        //     ->whereYear('created_at',$tahun)
-        //     ->orderByRaw('created_at DESC')
-        //     ->first();
-        // if($pemegang != null){
-        //     $nama = $pemegang->karyawan->nama;
-        // } else {
-        //     $nama = null;
-        // }
-        // var_dump($qrcode);die;
         return view ('barang.stikerbaru', compact('data'));
+    }
+
+    public function reportkategori()
+    {
+    	$data = Kategori::all();
+        $satu = Barang::select("*")
+            ->where('kategori_id','1')
+            ->count();
+        $dua = Barang::select("*")
+            ->where('kategori_id','2')
+            ->count();
+        $tiga = Barang::select("*")
+            ->where('kategori_id','3')
+            ->count();
+        $empat = Barang::select("*")
+            ->where('kategori_id','4')
+            ->count();
+        $lima = Barang::select("*")
+            ->where('kategori_id','5')
+            ->count();
+        $enam = Barang::select("*")
+            ->where('kategori_id','6')
+            ->count();
+        $tujuh = Barang::select("*")
+            ->where('kategori_id','7')
+            ->count();
+        $delapan = Barang::select("*")
+            ->where('kategori_id','8')
+            ->count();
+        $sembilan = Barang::select("*")
+            ->where('kategori_id','9')
+            ->count();
+
+        $hsatu = Barang::where('kategori_id','1')->sum('harga');
+        $hdua = Barang::where('kategori_id','2')->sum('harga');
+        $htiga = Barang::where('kategori_id','3')->sum('harga');
+        $hempat = Barang::where('kategori_id','4')->sum('harga');
+        $hlima = Barang::where('kategori_id','5')->sum('harga');
+        $henam = Barang::where('kategori_id','6')->sum('harga');
+        $htujuh = Barang::where('kategori_id','7')->sum('harga');
+        $hdelapan = Barang::where('kategori_id','8')->sum('harga');
+        $hsembilan = Barang::where('kategori_id','9')->sum('harga');
+        // dd($hsatu);
+        return view ('barang.reportkategori', compact('data','satu','dua','tiga','empat','lima','enam','tujuh','delapan','sembilan','hsatu','hdua','htiga','hempat','hlima','henam','htujuh','hdelapan','hsembilan'));
+    }
+
+    public function reportaset()
+    {
+        $data = Barang::select("kode_barang")
+            ->distinct()
+            ->get();
+        // dd($data);
+        $kode = null;
+        $hsatu = Barang::where('kode_barang','1')->sum('harga');
+        // dd($hsatu);
+        return view ('barang.reportaset', compact('data','hsatu','kode'));
+    }
+
+    public function report($kode_barang)
+    {
+        $kode = $kode_barang;
+        $data = Barang::select("kode_barang")
+            ->distinct()
+            ->get();
+        $data1 = Barang::select("*")
+            ->where('kode_barang', $kode_barang)
+            ->distinct()
+            ->get();
+        $jumlah = Barang::select("*")
+            ->where('kode_barang', $kode_barang)
+            ->count();
+        // dd($kode);
+        $harga = Barang::where('kode_barang',$kode_barang)->sum('harga');
+        // dd($hsatu);
+        return view ('barang.reportaset', compact('data','data1','harga','jumlah','kode'));
     }
 }

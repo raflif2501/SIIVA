@@ -71,7 +71,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Pajak Kendaraan Yang Belum Bayar ( {{ $today }} )</h3>
+                        <h3 class="card-title">Pajak Kendaraan Yang Belum Terbayarkan ( {{ $today }} )</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -115,7 +115,7 @@
                             <div class="card-header">
                                 <h5 class="card-title">
                                     <i class="fas fa-money-check-alt mr-2"></i>
-                                    Pajak Belum Bayar
+                                    Pajak Belum Terbayarkan
                                 </h5>
                                 <div class="card-tools">
                                     <a href="/home">

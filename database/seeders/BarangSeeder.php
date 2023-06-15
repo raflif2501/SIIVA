@@ -33,7 +33,7 @@ class BarangSeeder extends Seeder
             'bpkb'     => 'M-04804272',
             'keterangan'     => 'Baik',
             'tanggal_perawatan'     => '2023-06-01',
-            'kategori_id'     => '1',
+            'kategori_id'     => '2',
             'bidang_id'     => '1',
         ]);
         $barang = Barang::create([
@@ -54,7 +54,7 @@ class BarangSeeder extends Seeder
             'bpkb'     => 'M-03851345',
             'keterangan'     => 'Baik',
             'tanggal_perawatan'     => '2023-06-01',
-            'kategori_id'     => '3',
+            'kategori_id'     => '2',
             'bidang_id'     => '1',
         ]);
         $barang = Barang::create([
@@ -75,7 +75,7 @@ class BarangSeeder extends Seeder
             'bpkb'     => 'M-C 0234007J',
             'keterangan'     => 'Kurang Baik',
             'tanggal_perawatan'     => '2023-06-01',
-            'kategori_id'     => '3',
+            'kategori_id'     => '2',
             'bidang_id'     => '1',
         ]);
     }

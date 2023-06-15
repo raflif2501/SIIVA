@@ -34,7 +34,7 @@ class BarangsImport implements ToModel
             'mesin'    => $row['13'],
             'nopol'    => $row['14'],
             'bpkb'    => $row['15'],
-            // 'tanggal_perawatan'    => $row['16'],
+            'tanggal_perawatan'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['16']),
             'keterangan'    => $row['17'],
             'kategori_id'    => $row['18'],
             'bidang_id'    => $row['19'],

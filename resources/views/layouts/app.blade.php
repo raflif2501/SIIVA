@@ -198,22 +198,6 @@
                                 </a>
                             </li>
                         @endrole
-                        {{-- @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                            <li class="nav-item ">
-                                <a href="{{ route('peminjaman.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-sign-out-alt"></i>
-                                    <p>Peminjaman</p>
-                                </a>
-                            </li>
-                        @endrole
-                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                            <li class="nav-item ">
-                                <a href="{{ route('pengembalian.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-sign-in-alt"></i>
-                                    <p>Pengembalian</p>
-                                </a>
-                            </li>
-                        @endrole --}}
                         <li class="nav-header">ARSIP</li>
                         @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
                             <li class="nav-item ">
@@ -236,6 +220,22 @@
                                 <a href="/mutasikaryawan" class="nav-link">
                                     <i class="nav-icon fas fa-user-edit"></i>
                                     <p>Karyawan Diperbarui</p>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                            <li class="nav-item ">
+                                <a href="/reportaset" class="nav-link">
+                                    <i class="nav-icon fas fa-scroll"></i>
+                                    <p>Report Aset</p>
+                                </a>
+                            </li>
+                        @endrole
+                        @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                            <li class="nav-item ">
+                                <a href="/reportkategori" class="nav-link">
+                                    <i class="nav-icon fas fa-table"></i>
+                                    <p>Report Kategori</p>
                                 </a>
                             </li>
                         @endrole
@@ -279,9 +279,9 @@
         <!-- /.content-wrapper -->
         <footer class="main-footer fixed-bottom">
             <strong>Dinas Perkejaan Umum dan Tata Ruang Kabupaten Sumenep</strong>
-            <div class="float-right d-none d-sm-inline-block">
+            {{-- <div class="float-right d-none d-sm-inline-block">
                 <b>Copyright</b> 2023
-            </div>
+            </div> --}}
         </footer>
 
         <!-- Control Sidebar -->
