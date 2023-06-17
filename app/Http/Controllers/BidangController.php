@@ -20,8 +20,10 @@ class BidangController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('role:admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR');
+        $this->middleware('permission:list bidang', ['only' => ['index','show']]);
+        $this->middleware('permission:create bidang', ['only' => ['create','store']]);
+        $this->middleware('permission:edit bidang', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete bidang', ['only' => ['destroy']]);
     }
     public function index()
     {

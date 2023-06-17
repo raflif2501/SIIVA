@@ -115,8 +115,8 @@
                                         <td>{{ $p->kategori->jenis_perawatan }}</td>
                                         <td>{{ $p->bidang->nama_bidang }}</td>
                                         <td>{{ $p->bidang->ruang }}</td>
-                                        <td>
-                                            @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                                        @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                                            <td>
                                                 <a href="{{ route('aset.show', $p->id) }}" target="_blank"
                                                     class="btn btn-sm btn-primary">Cetak
                                                     Stiker</a>
@@ -124,8 +124,8 @@
                                                     class="btn btn-sm btn-warning">Edit</a>
                                                 <input type="button" class="btn btn-sm btn-danger"
                                                     data-id="{{ $p->id }}" onclick="deleteData(this)" value="Delete">
-                                            @endrole
-                                        </td>
+                                            </td>
+                                        @endrole
                                     </tr>
                                 @endforeach
                             </tbody>

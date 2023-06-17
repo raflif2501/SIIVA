@@ -24,8 +24,10 @@ class BarangController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('role:admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR');
+        $this->middleware('permission:list barang', ['only' => ['index','show']]);
+        $this->middleware('permission:create barang', ['only' => ['create','store']]);
+        $this->middleware('permission:edit barang', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete barang', ['only' => ['destroy']]);
     }
     public function index()
     {
@@ -74,10 +76,11 @@ class BarangController extends Controller
                 'kategori_id' => 'required',
                 'bidang_id' => 'required',
             ],$pesan);
-            // var_dump($request->all());
-            // $image = $request->file('kode_barang');
-            // $name = time().'.'.$image->getClientOriginalExtension();
-            // $image->move(public_path('image'),$name);
+            // $r = Barang::select("register")
+            //     ->where('kode_barang',$request->kode_barang)
+            //     ->where('register','!=',$request->register)
+            //     ->get();
+            // dd($r);
             $id = intval("0" . rand(1,9) . rand(0,9) . rand(0,9));
             if($request->nama_barang != null)
             {

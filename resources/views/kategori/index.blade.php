@@ -71,14 +71,14 @@
                                         <td>{{ $p->kategori }}</td>
                                         <td>{{ $p->jangka_perawatan }} Hari</td>
                                         <td>{{ $p->jenis_perawatan }}</td>
-                                        <td>
-                                            @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                                        @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                                            <td>
                                                 <a href="{{ route('kategori.edit', $p->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
                                                 <input type="button" class="btn btn-sm btn-danger"
                                                     data-id="{{ $p->id }}" onclick="deleteData(this)" value="Delete">
-                                            @endrole
-                                        </td>
+                                            </td>
+                                        @endrole
                                     </tr>
                                 @endforeach
                             </tbody>

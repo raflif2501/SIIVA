@@ -81,8 +81,8 @@
                                         <td>{{ $p->surat }}</td>
                                         <td>{{ $p->tanggal }}</td>
                                         <td>{{ $p->batas }}</td>
-                                        <td>
-                                            @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                                        @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
+                                            <td>
                                                 <a href="{{ route('pemegang.show', $p->id) }}" class="btn btn-sm btn-primary"
                                                     target="_blank">Pernyataan</a>
                                                 <a href="/cetak/{{ $p->id }}" class="btn btn-sm btn-info"
@@ -94,8 +94,8 @@
                                                     class="btn btn-sm btn-warning">Edit</a>
                                                 <input type="button" class="btn btn-sm btn-danger"
                                                     data-id="{{ $p->id }}" onclick="deleteData(this)" value="Delete">
-                                            @endrole
-                                        </td>
+                                            </td>
+                                        @endrole
                                     </tr>
                                 @endforeach
                             </tbody>

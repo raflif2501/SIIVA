@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
             'email' => 'akbarriskidarrani@admin.com',
             'password' => bcrypt('akbarPUTR;'),
             ]);
-            $admin->assignRole('admin');
+        $admin->assignRole('admin');
 
          // Sekdis
          $sekdis = User::create([

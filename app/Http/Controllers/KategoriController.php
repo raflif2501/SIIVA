@@ -20,8 +20,10 @@ class KategoriController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('role:admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR');
+        $this->middleware('permission:list kategori', ['only' => ['index','show']]);
+        $this->middleware('permission:create kategori', ['only' => ['create','store']]);
+        $this->middleware('permission:edit kategori', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete kategori', ['only' => ['destroy']]);
     }
     public function index()
     {

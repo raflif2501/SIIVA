@@ -23,8 +23,10 @@ class PemegangController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('role:admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR');
+        $this->middleware('permission:list pemegang', ['only' => ['index','show']]);
+        $this->middleware('permission:create pemegang', ['only' => ['create','store']]);
+        $this->middleware('permission:edit pemegang', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete pemegang', ['only' => ['destroy']]);
     }
     public function index()
     {
