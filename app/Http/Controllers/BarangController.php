@@ -108,7 +108,7 @@ class BarangController extends Controller
                     'bidang_id' => $request->bidang_id,
                 ]);
             }else{
-                Alert::error('Maaf', 'Nomor Register sudang digunakan');
+                Alert::error('Maaf', 'Nomor Register sudah digunakan');
                 return redirect()->back();
             }
             Alert::success('Success', 'Data Berhasil Ditambahkan');

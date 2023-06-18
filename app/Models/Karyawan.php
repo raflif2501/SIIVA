@@ -17,8 +17,8 @@ class Karyawan extends Model
     {
         return $this->belongsTo(Bidang::class);
     }
-    public function peminjaman()
-    {
-        return $this->hasOne(Peminjaman::class);
-    }
+    // public function pemegang()
+    // {
+    //     return $this->hasMany(Pemegang::class);
+    // }
 }
