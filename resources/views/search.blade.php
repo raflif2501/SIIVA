@@ -31,6 +31,13 @@
                     <div class="card-header">
                         <div class="inner-form">
                             <table>
+                                @php
+                                    function str($rupiah)
+                                    {
+                                        $rp = 'Rp ' . number_format($rupiah, 2, ',', '.');
+                                        return $rp;
+                                    }
+                                @endphp
                                 <tbody>
                                     @foreach ($data as $p)
                                         <tr>
@@ -57,6 +64,16 @@
                                             <td width=150px>Asal</td>
                                             <td>: {{ $p->asal }}</td>
                                         </tr>
+                                        <tr>
+                                            <td width=150px>Harga</td>
+                                            <td>: {{ str($p->harga) }}</td>
+                                        </tr>
+                                        @if ($p->keterangan != null)
+                                            <tr>
+                                                <td width=150px>Keterangan</td>
+                                                <td>: {{ $p->keterangan }}</td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>

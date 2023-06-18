@@ -76,13 +76,14 @@ class BarangController extends Controller
                 'kategori_id' => 'required',
                 'bidang_id' => 'required',
             ],$pesan);
-            // $r = Barang::select("register")
-            //     ->where('kode_barang',$request->kode_barang)
-            //     ->where('register','!=',$request->register)
-            //     ->get();
-            // dd($r);
+            $r = Barang::select("register")
+                ->where('kode_barang',$request->kode_barang)
+                ->where('register',$request->register)
+                ->get();
+            $a = $r->implode('register');
+            // dd($a);
             $id = intval("0" . rand(1,9) . rand(0,9) . rand(0,9));
-            if($request->nama_barang != null)
+            if($request->register != $a)
             {
                 Barang::create([
                     'id' => $id,
@@ -107,28 +108,8 @@ class BarangController extends Controller
                     'bidang_id' => $request->bidang_id,
                 ]);
             }else{
-                Barang::create([
-                    'id' => $id,
-                    'kode' => $request->kode,
-                    'kode_barang' => $request->kode_barang,
-                    'nama_barang' => $request->nama_barang,
-                    'register' => $request->register,
-                    'merktype' => $request->merktype,
-                    'bahan' => $request->bahan,
-                    'tahun' => $request->tahun,
-                    'harga' => $request->harga,
-                    'asal' => $request->asal,
-                    'ukuran' => $request->ukuran,
-                    'pabrik' => $request->pabrik,
-                    'rangka' => $request->rangka,
-                    'mesin' => $request->mesin,
-                    'nopol' => $request->nopol,
-                    'bpkb' => $request->bpkb,
-                    'tanggal_perawatan' => $request->tanggal_perawatan,
-                    'keterangan' => $request->keterangan,
-                    'kategori_id' => $request->kategori_id,
-                    'bidang_id' => $request->bidang_id,
-                ]);
+                Alert::error('Maaf', 'Nomor Register sudang digunakan');
+                return redirect()->back();
             }
             Alert::success('Success', 'Data Berhasil Ditambahkan');
             return redirect()->route('aset.index');
