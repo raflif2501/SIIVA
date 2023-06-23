@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ 'Data Arsip Pemegang Aset Tahun' }}
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">

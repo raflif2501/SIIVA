@@ -28,7 +28,7 @@ class KaryawanSeeder extends Seeder
         ]);
 
         $karyawan = Karyawan::create([
-            'nik'     => '3529092501020003',
+            'nik'     => '3529092501020001',
             'nip'     => '196802251994031007',
             'nama'     => 'Ir. ERI SUSANTO, M. Si',
             'jk'     => 'Laki - laki',

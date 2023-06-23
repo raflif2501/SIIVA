@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ 'Data Perubahan Pemegang Aset Tahun' }} {{ $tahun }}
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">

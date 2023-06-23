@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ 'Data Bidang' }}
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -35,6 +37,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="/downloadExcelBidang" class="btn btn-success">Download Format
+                                                    Excel</a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Upload</button>

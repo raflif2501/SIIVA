@@ -1,43 +1,18 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ 'Report Aset Berdasarkan Kode Barang' }}
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Jumlah Aset Berdasarkan Kode Barang</h3>
-                        @role('admin|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
-                            <div style="float: right">
-                                <button type="button" class="btn btn-primary mr-1" data-toggle="modal"
-                                    data-target="#exampleModal">
-                                    Pilih Kode Barang
-                                </button>
-                            </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Daftar Kode Barang</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            @foreach ($data as $p)
-                                                <a href="/report/{{ $p->kode_barang }}"
-                                                    class="btn btn-primary mr-1">{{ $p->kode_barang }}</a>
-                                            @endforeach
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endrole
+                        <h3 class="card-title">Report Aset Berdasarkan Kode Barang</h3>
+                        {{-- <div style="float: right">
+                            <a href="/reportasetpdf" target="_blank" class="btn btn-danger">Cetak PDF</a>
+                            <a href="/reportasetexcel" target="_blank" class="btn btn-success">Cetak Excel</a>
+                        </div> --}}
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
@@ -48,8 +23,8 @@
                                     <th>Kode Barang</th>
                                     <th>Nama Barang</th>
                                     <th>Register</th>
-                                    <th>Jumlah Aset</th>
-                                    <th>Total Harga Aset</th>
+                                    <th>Merk/Type</th>
+                                    <th>Harga</th>
                                 </tr>
                             </thead>
                             @php
@@ -62,30 +37,59 @@
                                     return $rp;
                                 }
                             @endphp
-                            @if ($kode != null)
+                            @foreach ($data as $p)
                                 <tbody>
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>
-                                            {{ $kode }}
+                                            {{ $p->kode_barang }}
                                         </td>
                                         <td>
-                                            @foreach ($data1 as $p)
-                                                {{ $p->nama_barang }}
-                                                <br>
+                                            @foreach ($data1 as $d)
+                                                @if ($p->kode_barang == $d->kode_barang)
+                                                    {{ $d->nama_barang }}
+                                                    <br>
+                                                @endif
                                             @endforeach
                                         </td>
                                         <td>
-                                            @foreach ($data1 as $p)
-                                                {{ $p->register }}
-                                                <br>
+                                            @foreach ($data1 as $d)
+                                                @if ($p->kode_barang == $d->kode_barang)
+                                                    {{ $d->register }}
+                                                    <br>
+                                                    @php
+                                                        $harga = $d->sum('harga');
+                                                    @endphp
+                                                @endif
                                             @endforeach
                                         </td>
-                                        <td>{{ $jumlah }}</td>
-                                        <td>{{ str($harga) }}</td>
+                                        <td>
+                                            @foreach ($data1 as $d)
+                                                @if ($p->kode_barang == $d->kode_barang)
+                                                    {{ $d->merktype }}
+                                                    <br>
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($data1 as $d)
+                                                @if ($p->kode_barang == $d->kode_barang)
+                                                    {{ str($d->harga) }}
+                                                    <br>
+                                                @endif
+                                            @endforeach
+                                        </td>
                                     </tr>
                                 </tbody>
-                            @endif
+                            @endforeach
+                            <tbody>
+                                <tr>
+                                    <td colspan="5" style="text-align: center">Total Harga</td>
+                                    <td>
+                                        {{ str($harga) }}
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->

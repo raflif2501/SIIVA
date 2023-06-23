@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SIIVA DINAS PU TATA RUANG Kabupaten Sumenep</title>
+    <title>SIIVA @yield('title')</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin') }}/dist/img/logo.png">
 
     <!-- Google Font: Source Sans Pro -->
@@ -219,13 +219,13 @@
                             <li class="nav-item ">
                                 <a href="/mutasikaryawan" class="nav-link">
                                     <i class="nav-icon fas fa-user-edit"></i>
-                                    <p>Karyawan Diperbarui</p>
+                                    <p>Karyawan Baru/Mutasi</p>
                                 </a>
                             </li>
                         @endrole
                         @role('admin|sekdis|B-SDA|B-BM|B-PBP|B-AMdP|B-BJK|B-TR')
                             <li class="nav-item ">
-                                <a href="/reportaset" class="nav-link">
+                                <a href="/reportaset_" class="nav-link">
                                     <i class="nav-icon fas fa-scroll"></i>
                                     <p>Report Aset</p>
                                 </a>

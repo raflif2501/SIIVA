@@ -7,8 +7,9 @@ use Illuminate\Support\Str;
 use App\Models\Barang;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class BarangsImport implements ToModel
+class BarangsImport implements ToModel, WithStartRow
 {
     /**
     * @param array $row
@@ -39,5 +40,9 @@ class BarangsImport implements ToModel
             'kategori_id'    => $row['18'],
             'bidang_id'    => $row['19'],
         ]);
+    }
+    public function startRow(): int
+    {
+        return 2;
     }
 }

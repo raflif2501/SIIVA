@@ -38,7 +38,7 @@ class PemegangController extends Controller
         $data = Pemegang::select("*")
             ->whereYear('tanggal', '=',$tahun)
             ->get();
-        return view('pemegang.index', compact('data'));
+        return view('pemegang.index', compact('data','tahun'));
     }
 
     /**
@@ -203,7 +203,7 @@ class PemegangController extends Controller
         ->whereYear('batas', '<',$tahun)
         ->get();
         // dd($terkecil);
-        return view('pemegang.arsip', compact('arsip','terkecil'));
+        return view('pemegang.arsip', compact('arsip','terkecil','tahun'));
     }
 
     public function baru()
@@ -268,8 +268,6 @@ class PemegangController extends Controller
 
         $d = Pemegang::select("barang_id")
             ->whereYear('updated_at',$tahun)
-            // ->whereMonth('updated_at', $bulan)
-            // ->whereDay('updated_at', '=', $tanggal)
             ->whereIn('barang_id',$p)
             ->get();
 
@@ -277,8 +275,6 @@ class PemegangController extends Controller
             ->whereYear('updated_at',$tahun)
             ->whereYear('tanggal',$tahun)
             ->whereIn('barang_id',$d)
-            // ->whereMonth('created_at', $bulan)
-            // ->whereDay('created_at', '=', $tanggal)
             ->get();
 
         return view('pemegang.perubahan', compact('data','data1','tahun'));
@@ -291,23 +287,6 @@ class PemegangController extends Controller
         $data = Pemegang::select("*")
             ->where('id',$id)
             ->get();
-
-        // $pemegang = Pemegang::select("*")
-        //     ->whereIn('barang_id',$d)
-        //     ->whereYear('created_at',$tahun)
-        //     ->orderByRaw('created_at DESC')
-        //     ->first();
-
-        // $d = Pemegang::select("barang_id")
-        //     ->where('id',$id)
-        //     ->get();
-
-        // if($pemegang != null){
-        //     $nama = $pemegang->karyawan->nama;
-        // } else {
-        //     $nama = null;
-        // }
-        // dd($nama);
         return view ('pemegang.stiker', compact('data'));
     }
 }

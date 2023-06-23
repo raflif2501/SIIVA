@@ -61,8 +61,8 @@ class KaryawanController extends Controller
             'numeric' => ':attribute harus diisi angka !',
             ];
             $this->validate($request,[
-                'nik' => 'required|numeric|min:16|max:16',
-                'nip' => 'unique:karyawans',
+                'nik' => 'required|min:16|unique:karyawans',
+                'nip' => 'required|min:16|unique:karyawans',
                 'nama' => 'required',
                 'jk' => 'required',
                 'alamat' => 'required',
@@ -139,7 +139,8 @@ class KaryawanController extends Controller
             'numeric' => ':attribute harus diisi angka !',
             ];
             $this->validate($request,[
-                'nik' => 'required|numeric|min:16|max:16',
+                'nik' => 'required|min:16',
+                'nip' => 'required|min:16',
                 'nama' => 'required',
                 'jk' => 'required',
                 'alamat' => 'required',
@@ -147,8 +148,25 @@ class KaryawanController extends Controller
                 'jabatan' => 'required',
                 'bidang_id' => 'required',
             ],$pesan);
-            $data = Karyawan::find($id);
-            $data->update($request->all());
+            $i = Karyawan::select('nip')
+                ->where('id',$id)
+                ->get();
+            $p = $i->implode('nip');
+            $n = Karyawan::select('nik')
+                ->where('id',$id)
+                ->get();
+            $k = $n->implode('nik');
+            if($request->nip != $p && $request->nik != $k)
+            {
+                $data = Karyawan::find($id);
+                $data->update($request->all());
+            } elseif($request->nip == $p && $request->nik == $k) {
+                $data = Karyawan::find($id);
+                $data->update($request->all());
+            } else {
+                Alert::error('Maaf', 'NIP / NIK sudah digunakan');
+                return redirect()->back();
+            }
             Alert::success('Success', 'Data Berhasil Dirubah');
             return redirect()->route('karyawan.index');
     }
@@ -200,6 +218,6 @@ class KaryawanController extends Controller
         $data = Karyawan::select("*")
             ->whereYear('updated_at',$tahun)
             ->get();
-        return view('karyawan.mutasi', compact('data'));
+        return view('karyawan.mutasi', compact('data','tahun'));
     }
 }

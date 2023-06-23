@@ -8,8 +8,11 @@ use App\Imports\BidangsImport;
 use App\Imports\KaryawansImport;
 use App\Imports\KategorisImport;
 use App\Imports\PemegangsImport;
+use App\Exports\BarangExport;
+use App\Exports\KategoriExport;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 
 class ExcelController extends Controller
 {
@@ -76,5 +79,16 @@ class ExcelController extends Controller
         Excel::import(new PemegangsImport,public_path('/file_/'.$nama));
         Alert::success('Success', 'Data Berhasil Ditambahkan');
         return back();
+    }
+
+    public function reportasetexcel()
+    {
+        return Excel::download(new BarangExport, 'reportbarang.xlsx');
+        // (new DownloadExcel())->askForWriterType();
+    }
+
+    public function reportkategoriexcel()
+    {
+        return Excel::download(new KategoriExport, 'reportkategorikategori.xlsx');
     }
 }

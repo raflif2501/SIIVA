@@ -14,12 +14,17 @@
 
 <body>
     <div class="s131">
+        <div>
+        </div>
         <form method="GET" action="cari">
             {{-- <div class="input-field first-wrap"> --}}
             <input id="id" name="cari" type="text" placeholder="What are you looking for?" hidden />
             {{-- </div> --}}
             <div class="row" style="justify-content: center">
                 <div class="col-6">
+                    <center>
+                        <h2>SCAN BARCODE BARANG</h2>
+                    </center>
                     <div id="reader" width="600px"></div>
                     <div class="d-grid gap-2">
                         <button id="clickButton" class="btn btn-primary" type="submit"

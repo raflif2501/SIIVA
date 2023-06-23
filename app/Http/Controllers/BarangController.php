@@ -186,8 +186,27 @@ class BarangController extends Controller
                 'kategori_id' => 'required',
                 'bidang_id' => 'required',
             ],$pesan);
-            $data = Barang::find($id);
-            $data->update($request->all());
+            $r = Barang::select("register")
+                ->where('kode_barang',$request->kode_barang)
+                ->where('register',$request->register)
+                ->get();
+            $a = $r->implode('register');
+            $i = Barang::select('register')
+                ->where('id',$id)
+                ->get();
+            $d = $i->implode('register');
+            // dd($d);
+            if($request->register != $a)
+            {
+                $data = Barang::find($id);
+                $data->update($request->all());
+            } elseif($request->register == $d) {
+                $data = Barang::find($id);
+                $data->update($request->all());
+            } else {
+                Alert::error('Maaf', 'Nomor Register sudah digunakan');
+                return redirect()->back();
+            }
             Alert::success('Success', 'Data Berhasil Dirubah');
             return redirect()->route('aset.index');
     }
@@ -298,11 +317,21 @@ class BarangController extends Controller
         $data = Barang::select("kode_barang")
             ->distinct()
             ->get();
+        $data1 = Barang::select('*')
+            ->get();
+        // dd($data1);
+        return view ('barang.reportaset', compact('data','data1'));
+    }
+    public function reportaset_()
+    {
+        $data = Barang::select("kode_barang")
+            ->distinct()
+            ->get();
         // dd($data);
         $kode = null;
-        $hsatu = Barang::where('kode_barang','1')->sum('harga');
+        // $hsatu = Barang::where('kode_barang','1')->sum('harga');
         // dd($hsatu);
-        return view ('barang.reportaset', compact('data','hsatu','kode'));
+        return view ('barang.reportaset_', compact('data','kode'));
     }
 
     public function report($kode_barang)
@@ -321,6 +350,69 @@ class BarangController extends Controller
         // dd($kode);
         $harga = Barang::where('kode_barang',$kode_barang)->sum('harga');
         // dd($hsatu);
-        return view ('barang.reportaset', compact('data','data1','harga','jumlah','kode'));
+        return view ('barang.reportaset_', compact('data','data1','harga','jumlah','kode'));
     }
+
+    public function reportasetpdf()
+    {
+    	$data = Barang::select("kode_barang")
+            ->distinct()
+            ->get();
+        $data1 = Barang::select('*')
+            ->get();
+        $today = Carbon::now()->isoFormat('D MMMM Y');
+        // var_dump($data);
+        // die;
+        $pdf = PDF::loadView('barang.reportaset_pdf', compact('data','data1','today'));
+        return $pdf->setPaper('a4', 'potrait')->stream();
+    }
+
+    public function reportkategoripdf()
+    {
+    	$data = Kategori::all();
+        $satu = Barang::select("*")
+            ->where('kategori_id','1')
+            ->count();
+        $dua = Barang::select("*")
+            ->where('kategori_id','2')
+            ->count();
+        $tiga = Barang::select("*")
+            ->where('kategori_id','3')
+            ->count();
+        $empat = Barang::select("*")
+            ->where('kategori_id','4')
+            ->count();
+        $lima = Barang::select("*")
+            ->where('kategori_id','5')
+            ->count();
+        $enam = Barang::select("*")
+            ->where('kategori_id','6')
+            ->count();
+        $tujuh = Barang::select("*")
+            ->where('kategori_id','7')
+            ->count();
+        $delapan = Barang::select("*")
+            ->where('kategori_id','8')
+            ->count();
+        $sembilan = Barang::select("*")
+            ->where('kategori_id','9')
+            ->count();
+
+        $hsatu = Barang::where('kategori_id','1')->sum('harga');
+        $hdua = Barang::where('kategori_id','2')->sum('harga');
+        $htiga = Barang::where('kategori_id','3')->sum('harga');
+        $hempat = Barang::where('kategori_id','4')->sum('harga');
+        $hlima = Barang::where('kategori_id','5')->sum('harga');
+        $henam = Barang::where('kategori_id','6')->sum('harga');
+        $htujuh = Barang::where('kategori_id','7')->sum('harga');
+        $hdelapan = Barang::where('kategori_id','8')->sum('harga');
+        $hsembilan = Barang::where('kategori_id','9')->sum('harga');
+
+        $today = Carbon::now()->isoFormat('D MMMM Y');
+        // var_dump($data);
+        // die;
+        $pdf = PDF::loadView('barang.reportkategori_pdf', compact('today','data','satu','dua','tiga','empat','lima','enam','tujuh','delapan','sembilan','hsatu','hdua','htiga','hempat','hlima','henam','htujuh','hdelapan','hsembilan'));
+        return $pdf->setPaper('a4', 'potrait')->stream();
+    }
+
 }

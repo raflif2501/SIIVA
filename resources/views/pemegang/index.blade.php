@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ 'Data Pemegang Aset Tahun' }} {{ $tahun }}
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -35,6 +37,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <a href="/downloadExcelPemegang" class="btn btn-success">Download Format
+                                                    Excel</a>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Upload</button>
@@ -89,7 +93,7 @@
                                                     target="_blank">Pakta
                                                     Integritas</a>
                                                 <a href="/stiker/{{ $p->id }}" class="btn btn-sm btn-primary active"
-                                                    target="_blank">Stiker</a>
+                                                    target="_blank">QR Code</a>
                                                 <a href="{{ route('pemegang.edit', $p->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
                                                 <input type="button" class="btn btn-sm btn-danger"

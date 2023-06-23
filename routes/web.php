@@ -10,6 +10,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PemegangController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ExcelController;
+use App\Http\Controllers\DownloadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +47,11 @@ Route::get('/stiker', [BarangController::class,'stiker']);
 Route::get('/stikerbaru', [BarangController::class,'stikerbaru']);
 Route::get('/asetbaru', [BarangController::class, 'baru']);
 Route::get('/reportkategori', [BarangController::class, 'reportkategori']);
+Route::get('/reportkategoripdf', [BarangController::class, 'reportkategoripdf']);
 Route::get('/reportaset', [BarangController::class, 'reportaset']);
+Route::get('/reportaset_', [BarangController::class, 'reportaset_']);
 Route::get('/report/{kode_barang}', [BarangController::class, 'report']);
+Route::get('/reportasetpdf', [BarangController::class, 'reportasetpdf']);
 Route::get('/karyawanbaru', [KaryawanController::class, 'baru']);
 Route::get('/karyawanmutasi', [KaryawanController::class, 'mts']);
 Route::get('/mutasikaryawan', [KaryawanController::class, 'mutasi']);
@@ -57,5 +61,12 @@ Route::post('/importkategori', [ExcelController::class, 'importkategori']);
 Route::post('/importbidang', [ExcelController::class, 'importbidang']);
 Route::post('/importbarang', [ExcelController::class, 'importbarang']);
 Route::post('/importpemegang', [ExcelController::class, 'importpemegang']);
+Route::get('/reportasetexcel', [ExcelController::class, 'reportasetexcel']);
+Route::get('/reportkategoriexcel', [ExcelController::class, 'reportkategoriexcel']);
+Route::get('/downloadExcelBarang', [DownloadController::class, 'downloadExcelBarang']);
+Route::get('/downloadExcelBidang', [DownloadController::class, 'downloadExcelBidang']);
+Route::get('/downloadExcelKategori', [DownloadController::class, 'downloadExcelKategori']);
+Route::get('/downloadExcelKaryawan', [DownloadController::class, 'downloadExcelKaryawan']);
+Route::get('/downloadExcelPemegang', [DownloadController::class, 'downloadExcelPemegang']);
 });
 Route::get('cari', [App\Http\Controllers\SearchController::class, 'cari']);

@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Bidang;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-class BidangsImport implements ToModel
+use Maatwebsite\Excel\Concerns\WithStartRow;
+
+class BidangsImport implements ToModel, WithStartRow
 {
     /**
     * @param array $row
@@ -21,5 +23,9 @@ class BidangsImport implements ToModel
             'kepala_bidang'    => $row['3'],
             'ruang'    => $row['4'],
         ]);
+    }
+    public function startRow(): int
+    {
+        return 2;
     }
 }

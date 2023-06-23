@@ -17,7 +17,7 @@
                             <div class="form-group">
                                 <label>NIK</label>
                                 <input type="text" name="nik" class="form-control @error('nik') is-invalid @enderror"
-                                    placeholder="Masukkan NIK" value="{{ $data->nik }}" min="16" max="16">
+                                    placeholder="Masukkan NIK" value="{{ $data->nik }}" min="16">
                                 @error('nik')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -27,7 +27,7 @@
                             <!-- text input -->
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
-                                <input type="number" name="nama"
+                                <input type="text" name="nama"
                                     class="form-control @error('nama') is-invalid @enderror"
                                     placeholder="Masukkan Nama Lengkap" value="{{ $data->nama }}">
                                 @error('nama')
@@ -92,8 +92,8 @@
                             <div class="form-group">
                                 <label>NIP</label>
                                 <input type="text" name="nip" class="form-control @error('nip') is-invalid @enderror"
-                                    placeholder="Masukkan NIP (Boleh Dikosongi)" value="{{ $data->nip }}" min="16"
-                                    max="16">
+                                    placeholder="Masukkan NIP (Boleh Dikosongi)" value="{{ $data->nip }}"
+                                    min="16">
                                 @error('nip')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

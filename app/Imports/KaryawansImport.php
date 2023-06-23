@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Karyawan;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class KaryawansImport implements ToModel
+class KaryawansImport implements ToModel, WithStartRow
 {
     /**
     * @param array $row
@@ -27,5 +28,9 @@ class KaryawansImport implements ToModel
             'pangkat'    => $row['8'],
             'bidang_id'    => $row['9'],
         ]);
+    }
+    public function startRow(): int
+    {
+        return 2;
     }
 }

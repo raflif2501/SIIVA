@@ -1,12 +1,18 @@
 @extends('layouts.app')
-
+@section('title')
+    {{ 'Report Aset Berdasarkan Kategori' }}
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Aset Berdasarkan Kategori</h3>
+                        <h3 class="card-title">Report Aset Berdasarkan Kategori</h3>
+                        {{-- <div style="float: right">
+                            <a href="/reportkategoripdf" target="_blank" class="btn btn-danger">Cetak PDF</a>
+                            <a href="/reportkategoriexcel" target="_blank" class="btn btn-success">Cetak Excel</a>
+                        </div> --}}
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
